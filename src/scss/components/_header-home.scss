@@ -1,19 +1,27 @@
+.header-home {
+background-image: url("../images/320/abstract-background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    @media screen and (min-width: 768px) {
+        background-image: url("../images/768/abstract-background.jpg");
+    }
+@media screen and (min-width: 1280px) {
+background-image: url("../images/1280/abstract-background.jpg");
+}
+}
 .header__container {
     width: 320px;
     padding: 44px 20px 92px;
     margin-right: auto;
     margin-left: auto;
-    background-image: url("../images/320/abstract-background.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    
     @media screen and (min-width: 768px) {
                 width: 768px;
                 padding: 40px 32px 81px;
-                background-image: url("../images/768/abstract-background.jpg");
             }
                         @media screen and (min-width: 1280px) {
                                     width: 1280px;
-                                    background-image: url("../images/1280/abstract-background.jpg");
+                                    
                                 }
                             }
 
