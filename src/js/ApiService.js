@@ -23,3 +23,6 @@ const fetchTrendMovies = async page => {
 //   const genres = await axios(`${BASE_URL}/genre/movie/list?api_key=${API_KEY}`);
 //   return genres;
 // };
+
+
+export {fetchSearchAnyMovie, fetchMovieById, fetchTrendMovies};
