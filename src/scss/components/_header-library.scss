@@ -1,0 +1,99 @@
+.header__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 60px;
+    @media screen and (min-width: 768px){
+        margin-bottom: 46px;
+    }
+}
+.header__nav-list{
+    display: flex;
+
+}
+.header__logo {
+}
+.header__logo-text {
+    display: none;
+    @media screen and (min-width: 768px) {
+        display: inline;
+        font-weight: 500;
+            font-size: 30px;
+            line-height: 1.16;
+            color: #FFFFFF;
+            margin-left: 10px;
+    }
+}
+.header-library {
+    background-image: url(../images/1280/background.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 40px 0 62px 0;
+    @media screen and (min-width: 768px) {
+                background-image: url("../images/768/background.jpg");
+            }
+                        @media screen and (min-width: 1280px) {
+                                    background-image: url("../images/1280/background.jpg");
+                                }
+                                & .container {
+                                    outline: none;
+                                }
+                            }
+.header__nav-item {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.66;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    position: relative;
+
+    &:not(:last-child){
+        margin-right: 39px
+    }
+
+}
+.header__nav-link {
+        font-weight: 500;
+    font-size: 12px;
+    line-height: 1.66;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    position: relative;
+}
+.header__btn-wrapper {
+    display: flex;
+    justify-content: center;
+    }
+.library__btn-item {
+    &:not(:last-child){
+        margin-right: 20px;
+        @media screen and (min-width: 768px) {
+             margin-right: 32px;
+        }
+        @media screen and (min-width: 1280px){
+            margin-right: 16px;
+        }
+    }
+}
+.header__btn--library {
+    padding: 14px 36px 12px 36px;
+    background-color: transparent;
+    border: 1px solid #FFFFFF;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33;
+    color: #FFFFFF;
+    @media screen and (min-width: 768px) {
+        padding: 13px 46px;
+    }
+    @media screen and (min-width: 1280px) {
+        padding: 12px 41px;
+}
+}
+.btn--active {
+    background: #FF6B02;
+    border: none;
+}
