@@ -27,12 +27,6 @@
     padding-right: 32px;
 } */
 }
-.footer-content,
-.footer-text{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 .footer-text,
 .footer-link,
 .footer-bottom-text{
@@ -51,49 +45,14 @@ line-height: 1.19;
 .footer-bottom-text{
   margin-right: 10px;
 }
-
-.footer-year,
-.footer-next-text{
-position: relative;
-
-margin-right: 6px;
-}
-.footer-year::before{
-  position: absolute;
-  right: 15px;
-  bottom: 2px;
-  content: "";
-  width: 1.5px;
-  height: 15px; 
-  border-radius: 1px;
-
-  margin-left: 6px;
-  margin-right: 6px;
-
-  display: block;
-
-  background-color:#545454;
-}
-
-.footer-next-text::after{
-  position: absolute;
-  right: -15px;
-  bottom: 2px;;
-  content: "";
-  width: 1px;
-  height: 15px; 
-  border-radius: 1px;
-
-  margin-right: 10px;
-
-  display: block;
-
-  background-color:#545454;
-}
-
-.footer-link-text{
-  color: #545454;
-}
+.footer-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 .footer-icon{
   margin-right: 10px;
+}
+.footer-link-text{
+  color: #545454;
 }
