@@ -18,9 +18,9 @@
 
 .modal {
     position: relative;
-    width: 240px;
+    width: 280px;
     padding: 48px 20px 40px;
-    background-color: #fff;
+    background-color: $main;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -29,16 +29,16 @@
     overflow-x: hidden;
 
     @media screen and (mix-width: 321px) and (max-width: 480px) {
-        width: 440px;
+        width: 480px;
     }
 
     @media screen and (min-width: 768px) {
-        width: 602px;
+        width: 710px;
         padding: 40px 72px 40px 36px;
     }
 
     @media screen and (min-width: 1280px) {
-        width: 782px;
+        width: 806px;
         padding: 40px 12px;
     }
 }
@@ -55,7 +55,7 @@
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover, &:focus {
-        fill: #FF6B01;
+        fill: $accent;
     }
 }
 
@@ -119,7 +119,7 @@
     font-weight: 500;
     font-size: 12px;
     line-height: 1.33;
-    color: #8C8C8C;
+    color: $add-modal;
 }
 
 .modal__table-text--header {
@@ -130,7 +130,7 @@
     font-weight: 500;
     font-size: 12px;
     line-height: 1.33;
-    color: #000000;
+    color: $dark;
 
     @media screen and (min-width: 768px) {
         line-height: 1.16;
@@ -138,9 +138,9 @@
 }
 
 .vote {
-    background: #FF6B01;
+    background: $accent;
     border-radius: 5px;
-    color: #fff;
+    color: $main;
     padding: 1px 10px;
     font-weight: 500;
     font-size: 12px;
@@ -188,9 +188,9 @@
     align-items: center;
     text-align: center;
     text-transform: uppercase;
-    color: #000000;
+    color: $dark;
     padding: 6px 27px;
-    border: 1px solid #000000;
+    border: 1px solid $dark;
     border-radius: 5px;
     background-color: transparent;
     transition-property: background, color, border;
@@ -198,8 +198,8 @@
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover, &:focus {
-        background: #FF6B01;
-        color: #fff;
+        background: $accent;
+        color: $main;
         border: none;
     }
 
