@@ -15,7 +15,7 @@ export const refs = {
 
     //modal
     backdrop: document.querySelector(".backdrop"),
-    modalCloseBtn: document.querySelector("modal__close-btn"),
+    modalCloseBtn: document.querySelector(".modal__close-btn"),
     modalInfoBox: document.querySelector(".modal__info-box"),
     modalWatcheBTN: document.querySelector(".modal__choice-btn--watched"),
     modalQueueBTN: document.querySelector(".modal__choice-btn--queue"),
