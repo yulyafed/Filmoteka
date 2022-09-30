@@ -5,7 +5,8 @@ export const refs = {
 
 
     //main
-
+    mainRenderList: document.querySelector(".main-render"), 
+    mainLink: document.querySelector(".main__link"), 
     //footer
 
     //library-header
