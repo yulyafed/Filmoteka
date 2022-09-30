@@ -78,8 +78,7 @@ const stylePagination = (firstPage, curPage) => {
 };
 
 export {
-  initPagination,
-  
+  initPagination,  
   getCurrentPage,
   stylePagination,
   HOME,

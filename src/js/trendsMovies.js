@@ -15,6 +15,7 @@ export async function createHomeGallery(page) {
   await fetchTrendMovies(page)
     .then(({ data: { results } }) => {
       stylePagination(START_PAGE, page);
+      // console.log(results);
 
       popularMoviesList = [];
       results.forEach(movie => {
@@ -25,6 +26,7 @@ export async function createHomeGallery(page) {
           genres: movie.genre_ids,
           year: movie.release_date ? movie.release_date.slice(0, 4) : 'Year N/A',
         };
+        // console.log(movieData);
 
         popularMoviesList.push(movieData);
       });
