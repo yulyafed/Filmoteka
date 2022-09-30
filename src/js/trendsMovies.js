@@ -77,7 +77,7 @@ export async function createHomeGallery(page) {
         <a href="#" class="main-render__link" data-id="${id}">
         <div class="main-render__image-box">
           <img class="main-render__image"
-          data-src="${poster ? `https://image.tmdb.org/t/p/w500/${poster}` : imgPlaceholder}"
+          src="${poster ? `https://image.tmdb.org/t/p/w500${poster}` : imgPlaceholder}"
           alt="${title}" 
           data-id="${id}">
           </div>
