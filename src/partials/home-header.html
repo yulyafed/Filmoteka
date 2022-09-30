@@ -1,4 +1,4 @@
-<header class="header-home">
+<header class="header-home" data-daynighth>
   <div class="container">
     <nav class="header__nav">
       <a href="./index.html" class="header__logo">
@@ -22,6 +22,19 @@
         </li>
       </ul>
     </nav>
+    <form class="check">
+      <input
+        type="checkbox"
+        name="checkbox"
+        id="checkbox"
+        class="cbx hidden"
+        data-daynight-open
+        data-daynight-close
+        data-daynighth-open
+        data-daynighth-close
+      />
+      <label for="checkbox" class="switch"></label>
+    </form>
     <form class="header-form">
       <input
         type="text"

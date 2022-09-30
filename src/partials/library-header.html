@@ -1,4 +1,4 @@
-<header class="header-library">
+<header class="header-library" data-daynighth>
   <div class="container">
     <nav class="header__nav">
       <a href="./index.html" class="header__logo">
@@ -22,6 +22,19 @@
         </li>
       </ul>
     </nav>
+    <form class="check">
+      <input
+        type="checkbox"
+        name="checkbox"
+        id="checkbox"
+        class="cbx hidden"
+        data-daynight-open
+        data-daynight-close
+        data-daynighth-open
+        data-daynighth-close
+      />
+      <label for="checkbox" class="switch"></label>
+    </form>
     <ul class="header__btn-wrapper">
       <li class="library__btn-item">
         <button class="header__btn--library btn--active" type="button">
