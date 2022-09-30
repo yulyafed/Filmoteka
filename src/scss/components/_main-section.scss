@@ -15,7 +15,7 @@
 }
 
 .main-render {
-  background-color: #ffffff;
+  background-color: transparent;
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px 0;
@@ -68,15 +68,16 @@
   max-width: 100%;
   flex-basis: calc(100% - 20px);
   border-radius: 0;
-  transition: box-shadow 300ms linear, border-radius 300ms linear,
+  transition: box-shadow 500ms linear, border-radius 500ms linear,
     transform 300ms linear;
   overflow: hidden;
-
+  border-bottom-right-radius: 40px;
+  border-top-right-radius: 40px;
   &:hover,
   &:focus {
-    box-shadow: 0px 0px 10px 2px (#ff6b02);
-    border-radius: 20px;
-    transform: scale(1.02);
+    box-shadow: 0px 0px 10px 5px (#ff6b02);
+    border-radius: 0;
+    transform: scale(1.03);
   }
 
   @media screen and (min-width: 768px) {

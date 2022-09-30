@@ -233,6 +233,85 @@ button {
   }
 }
 
+body {
+  transition: background-color 400ms linear;
+}
+
+.body_dark {
+  background-color: black;
+}
+
+.switch {
+  position: absolute;
+  right: 30px;
+  top: 24%;
+  display: block;
+  height: 20px;
+  width: 44px;
+  background: #303030;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0px 0px 5px 2px #ff6b02;
+}
+
+.switch:after {
+  position: absolute;
+  left: -2px;
+  top: -3px;
+  display: block;
+  width: 26px;
+  height: 26px;
+  border-radius: 100px;
+  background: #fff;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.05);
+  content: "";
+  transition: all 0.3s ease;
+}
+
+.switch:active:after {
+  transform: scale(1.15, 0.85);
+}
+
+.cbx:checked ~ label {
+  background: #ebebeb;
+}
+
+.cbx:checked ~ label:after {
+  left: 20px;
+  background: #000;
+}
+
+.cbx:disabled ~ label {
+  background: #d5d5d5;
+  pointer-events: none;
+}
+
+.cbx:disabled ~ label:after {
+  background: #bcbdbc;
+}
+
+.hidden {
+  display: none;
+}
+
+.header-home {
+  box-shadow: 0px 0px 26px 13px rgba(0, 0, 0, 0.784);
+  transition: box-shadow 300ms linear;
+  position: relative;
+}
+
+.header-library {
+  box-shadow: 0px 0px 26px 13px rgba(0, 0, 0, 0.784);
+  transition: box-shadow 300ms linear;
+  position: relative;
+}
+
+.dark-header {
+  box-shadow: 0px 0px 26px 13px rgba(255, 0, 0, 0.725);
+  transition: box-shadow 300ms linear;
+}
+
 .header-link__hover::after {
   content: "";
   position: absolute;
@@ -574,7 +653,7 @@ button {
 }
 
 .main-render {
-  background-color: #ffffff;
+  background-color: transparent;
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px 0;
@@ -629,13 +708,15 @@ button {
   max-width: 100%;
   flex-basis: calc(100% - 20px);
   border-radius: 0;
-  transition: box-shadow 300ms linear, border-radius 300ms linear, transform 300ms linear;
+  transition: box-shadow 500ms linear, border-radius 500ms linear, transform 300ms linear;
   overflow: hidden;
+  border-bottom-right-radius: 40px;
+  border-top-right-radius: 40px;
 }
 .main-render__item:hover, .main-render__item:focus {
-  box-shadow: 0px 0px 10px 2px #ff6b02;
-  border-radius: 20px;
-  transform: scale(1.02);
+  box-shadow: 0px 0px 10px 5px #ff6b02;
+  border-radius: 0;
+  transform: scale(1.03);
 }
 @media screen and (min-width: 768px) {
   .main-render__item {
@@ -707,8 +788,8 @@ button {
   position: fixed;
   right: 0;
   bottom: 20px;
-  width: 90px;
-  height: 120px;
+  width: 80px;
+  height: 100px;
   border: none;
   background-image: url(..//images/1280/ballon.png);
   background-color: transparent;
@@ -720,9 +801,9 @@ button {
 }
 @media screen and (min-width: 1280px) {
   .btn-to-top {
-    right: 40px;
-    width: 120px;
-    height: 180px;
+    right: 15px;
+    width: 100px;
+    height: 160px;
   }
 }
 
@@ -738,7 +819,7 @@ button {
 .footer {
   padding-top: 30px;
   padding-bottom: 30px;
-  background-color: #F7F7F7;
+  background-color: rgba(216, 215, 215, 0.2431372549);
 }
 
 @media screen and (min-width: 768px) {
