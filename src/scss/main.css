@@ -243,11 +243,12 @@ body {
 
 .switch {
   position: absolute;
-  right: 30px;
-  top: 24%;
+  right: 50%;
+  bottom: 10%;
   display: block;
   height: 20px;
   width: 44px;
+  transform: translateX(50%);
   background: #303030;
   border-radius: 100px;
   cursor: pointer;
