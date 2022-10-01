@@ -1,3 +1,8 @@
-import { refs } from "./js/refs";
+import { refs } from './js/refs';
+import './js/trendsMovies';
+import './js/pagination';
+import './js/preloader';
 import { onTopBallon } from './js/component/btn-to-top';
-onTopBallon();
+import './js/openModal';
+import './js/day-night';
+import './js/teamModal';

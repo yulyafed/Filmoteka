@@ -1,25 +1,51 @@
-<header class="header-home">
-    <div class="header__container">
-        <div class="header__link-box">
-            <a href="./index.html" class="logo">
-                <svg class="logo__icon">
-                    <use href="./images/icons.svg#icon-logo"></use>
-                </svg>
-                <p class="logo__text">Filmoteka</p>
-            </a>
-            <ul class="header-list">
-                <li class="header-list__item"><a href="./index.html" class="header-list__link header-list__link--active">Home</a>
-                </li>
-                <li class="header-list__item"><a href="./library.html" class="header-list__link">my library</a></li>
-            </ul>
-        </div>
-        <form class="header-form">
-            <input type="text" placeholder="Movie search" class="header-form__input">
-            <button class="header-form__btn">
-                <svg class="header-form__btn-icon">
-                    <use href="./images/icons.svg#icon-search"></use>
-                </svg>
-            </button>
-        </form>
-    </div>
+<header class="header-home" data-daynighth>
+  <div class="container">
+    <nav class="header__nav">
+      <a href="./index.html" class="header__logo">
+        <svg class="header__logo-svg" width="24" height="24">
+          <use href="./images/icons.svg#icon-logo"></use>
+        </svg>
+        <span class="header__logo-text">Filmoteka</span></a
+      >
+      <ul class="header__nav-list">
+        <li class="header__nav-item">
+          <a
+            href="./index.html"
+            class="header__nav-link header-list__link--active"
+            >Home</a
+          >
+        </li>
+        <li class="header__nav-item">
+          <a href="./library.html" class="header__nav-link header-link__hover"
+            >My library</a
+          >
+        </li>
+      </ul>
+    </nav>
+    <form class="check">
+      <input
+        type="checkbox"
+        name="checkbox"
+        id="checkbox"
+        class="cbx hidden"
+        data-daynight-open
+        data-daynight-close
+        data-daynighth-open
+        data-daynighth-close
+      />
+      <label for="checkbox" class="switch"></label>
+    </form>
+    <form class="header-form">
+      <input
+        type="text"
+        placeholder="Movie search"
+        class="header-form__input"
+      />
+      <button class="header-form__btn">
+        <svg class="header-form__btn-icon">
+          <use href="./images/icons.svg#icon-search"></use>
+        </svg>
+      </button>
+    </form>
+  </div>
 </header>

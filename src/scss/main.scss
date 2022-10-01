@@ -1,12 +1,17 @@
-@import "./utils/vars";
-@import "./common/reset";
-@import "./common/base";
+@import './components/preloader';
 
-@import "./components/header-home";
-@import "./components/header-library";
-@import "./components/main-section";
-@import "./layout/btn-to-top";
-@import "./components/footer";
+@import './utils/vars';
+@import './common/reset';
+@import './common/base';
 
-@import "./components/modal";
-@import "./components/modalStudents";
+@import './components/day-night';
+@import './components/animate';
+@import './components/header-home';
+@import './components/header-library';
+@import './components/main-section';
+@import './layout/btn-to-top';
+@import './components/footer';
+
+@import './components/modal';
+@import './components/modalStudents';
+@import './components/teamList';
