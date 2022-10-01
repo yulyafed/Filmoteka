@@ -55,6 +55,11 @@
     background-color: transparent;
     border: transparent;
     cursor: pointer;
+
+    &:hover,
+    &:focus {
+      fill: #ff6b08;
+    }
   }
   &__name-team {
     font-size: 30px;
