@@ -5,4 +5,4 @@ import './js/preloader';
 import { onTopBallon } from './js/component/btn-to-top';
 import './js/openModal';
 import './js/day-night';
-
+import './js/teamModal';
