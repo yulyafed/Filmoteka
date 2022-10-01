@@ -1,25 +1,49 @@
-import axios from 'axios';
-const API_KEY = 'fe8296f47fdee638ac9cbbf0db61e69d';
-const BASE_URL = 'https://api.themoviedb.org/3';
-const LANG = 'en-US';
+// import axios from 'axios';
+// const API_KEY = 'fe8296f47fdee638ac9cbbf0db61e69d';
+// const BASE_URL = 'https://api.themoviedb.org/3';
+// const LANG = 'en-US';
 
-const addToWatched = document.querySelector('.addWatchMy');
-const removeFromWatched = document.querySelector('.removeWatchMy');
-const myLibraryLink = document.querySelector('.watched');
-const WATCHED_MOVIES = 'watched_list';
 // const WatchedBtn = document.querySelector('.modal__choice-btn--watched');
 
-const fetchTrendMovies = async page => {
-  const response = await axios(
-    `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=${LANG}`
-  );
-  return response;
-};
+// const fetchMovieById = async movieId => {
+//   const response = await axios(
+//     `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}&language=${LANG}`
+//   );
+//   return response;
+// };
 
-fetchTrendMovies().then(data => {
-  console.log(data.data.results);
-  return data
-});
+// fetchMovieById().then(data => {
+//   movieId = data.data.results.id;
+// console.log(movieId);
+//   return movieId;
+// });
+
+// let addToWatchedBtn = document.querySelector('.addToWatched');
+// let removeFromWatchedBnt = document.querySelector('.removeFromWatched');
+
+const WATCHED_MOVIES = 'watched_list';
+
+// ____________________________CHANGE BTN_______________________________________
+
+let addRemoveClassBtn = document.querySelector('.addWB');
+
+addRemoveClassBtn.addEventListener('click', onClassAddWatched)
+function onClassAddWatched () {
+
+if (addRemoveClassBtn.classList.contains('addWB')) {
+  addRemoveClassBtn.textContent = 'REMOVE FROM WATCHED';
+  addRemoveClassBtn.classList.add('addQB');
+  addRemoveClassBtn.classList.remove('addWB');
+  addTaskToLocalStorage(movieObject);
+} else {
+  addRemoveClassBtn.textContent = 'ADD TO WATCHED';
+  addRemoveClassBtn.classList.add('addWB');
+  addRemoveClassBtn.classList.remove('addQB');
+  RemoveFromWatchedBtn(movieObject);
+}
+}
+
+// _____________________________________________________________________________
 
 let movieObject = {
   adult: false,
@@ -88,30 +112,37 @@ let movieObject = {
   vote_count: 13129,
 };
 
-// startMovieList();
+// addToWatchedBtn.addEventListener('click', onAddToWatchBtn);
+// removeFromWatchedBnt.addEventListener('click', onRemoveFromWatchedBtn);
 
-addToWatched.addEventListener('click', onAddToWatchBtn);
-removeFromWatched.addEventListener('click', onRemoveFromWatchedBtn);
+// function onAddToWatchBtn() {
+//   // addTaskToLocalStorage(movieObject);
+//   // myLibraryLink.insertAdjacentHTML('beforeend', renderTask(movieObject));
+// }
 
-function onAddToWatchBtn() {
-  addTaskToLocalStorage(movieObject);
-  // createData(movieObject);
-  myLibraryLink.insertAdjacentHTML('beforeend', renderTask(movieObject));
-}
-
-// function startMovieList () {
-//   const tasks = getTaskFromLocalStorage();
-// myLibraryLink.insertAdjacentHTML('beforeend', renderTask(JSON.parse(tasks)));
+// function onRemoveFromWatchedBtn() {
+//   // RemoveFromWatchedBtn(movieObject);
+//   // myLibraryLink.insertAdjacentHTML('beforeend', renderTask(movieObject));
 // }
 
 // ____________________________________SERVIS_________________________________________//
 
 function addTaskToLocalStorage(movieObject) {
   const parsedLocalStorage = getTaskFromLocalStorage(WATCHED_MOVIES);
-  console.log(parsedLocalStorage);
   const listOfMovies = parsedLocalStorage ? JSON.parse(parsedLocalStorage) : [];
+  listOfMovies.push(movieObject);
+  localStorage.setItem(WATCHED_MOVIES, JSON.stringify(listOfMovies));
+  return listOfMovies;
+}
 
-  returnTheSameMovie(listOfMovies, movieObject);
+function RemoveFromWatchedBtn() {
+  const parsedLocalStorage = getTaskFromLocalStorage(WATCHED_MOVIES);
+  const listOfMovies = JSON.parse(parsedLocalStorage);
+  const idMovie = movieObject.id;
+  const index = listOfMovies.findIndex(film => film.id === idMovie);
+  if (index !== -1) {
+    listOfMovies.splice(index, 1);
+  }
   localStorage.setItem(WATCHED_MOVIES, JSON.stringify(listOfMovies));
   return listOfMovies;
 }
@@ -120,58 +151,7 @@ export function getTaskFromLocalStorage(key = WATCHED_MOVIES) {
   return localStorage.getItem(key);
 }
 
-function returnTheSameMovie(listOfMovies, movieObject) {
-  // if (listOfMovies.id !== movieObject.id) {
-  listOfMovies.push(movieObject);
-  // }
-  return listOfMovies;
-}
-
-function onRemoveFromWatchedBtn(addTaskToLocalStorage, movieObject) {
-  let idList = listOfMovies[i].id;
-  let idMovie = movieObject.id;
-  console.log(idList);
-
-  for (let i = 0; i <= listOfMovies.length; i += 1) {
-    if (idList === idMovie) {
-      arrCheck(idList, idMovie);
-    }
-  }
-}
-function arrCheck(arr, it) {
-  for (let i = 0; i <= arr.length; i += 1) {
-    if (arr[i] !== it) {
-      arr.concat(arr[i]);
-      let index = arr.indexOf(it);
-      arr.splice(index, 1);
-      console.log(arr);
-      return arr;
-    }
-  }
-}
-
-// function remove (listOfMovies, movieObject) {
-//   console.log(listOfMovies[0].id);
-//   console.log(movieObject.id);
-
-//   for (let i = 0; i <= listOfMovies.length; i += 1) {
-//     if (listOfMovies[i].id === movieObject.id) {
-//       listOfMovies.concat(movieObject);
-//       console.log('true');
-//     }
-
-//     return listOfMovies;
-//   }
-// }
-
 // ___________________________________MARKUP__________________________________________
-// function createData({ genres, release_date }) {
-//   const date = new Date();
-//   console.log(genres[0].name);
-//   const movieYear = date.getFullYear(release_date);
-//   console.log(movieYear);
-//   return movieYear;
-// }
 
 export function renderTask({
   poster_path,
