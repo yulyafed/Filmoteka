@@ -82,3 +82,5 @@ function closeModal(event) {
             cleanBackDrop()
     }
 }
+
+export {toggleClassHidden, openBackDrop, cleanBackDrop, modalKeyDown, closeModal}
