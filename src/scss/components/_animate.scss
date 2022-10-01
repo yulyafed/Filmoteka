@@ -28,11 +28,6 @@
     transform: scale(1.05);
   }
 }
-// .header__logo > .header__logo-text {
-//   &:hover {
-//     color: #ff6b02;
-//   }
-// }
 .header__btn--library {
   transition: background-color 400ms;
   &:hover:not(.btn--active) {
@@ -89,5 +84,11 @@
   &:focus p {
     color: #ff6b02;
     transform: scale(1.05);
+  }
+}
+.main-render__image-box {
+  &:hover .main-render__image,
+  &:focus .main-render__image {
+    transform: scale(0.98);
   }
 }

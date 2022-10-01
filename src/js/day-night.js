@@ -6,17 +6,25 @@
     openDaynighthBtn: document.querySelector('[data-daynighth-open]'),
     closeDaynighthBtn: document.querySelector('[data-daynighth-close]'),
     daynighth: document.querySelector('[data-daynighth]'),
+    openDaynighttBtn: document.querySelector('[data-daynightt-open]'),
+    closeDaynighttBtn: document.querySelector('[data-daynightt-close]'),
+    daynightt: document.querySelector('[data-daynightt]'),
   };
 
   refs.openDaynightBtn.addEventListener('change', toggleDaynight);
   refs.closeDaynightBtn.addEventListener('change', toggleDaynight);
   refs.openDaynighthBtn.addEventListener('change', toggleDaynighth);
   refs.closeDaynighthBtn.addEventListener('change', toggleDaynighth);
+  refs.openDaynighttBtn.addEventListener('change', toggleDaynightt);
+  refs.closeDaynighttBtn.addEventListener('change', toggleDaynightt);
 
   function toggleDaynight() {
     refs.daynight.classList.toggle('body_dark');
   }
   function toggleDaynighth() {
     refs.daynighth.classList.toggle('dark-header');
+  }
+  function toggleDaynightt() {
+    refs.daynightt.classList.toggle('dark-text-main');
   }
 })();
