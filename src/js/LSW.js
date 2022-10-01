@@ -20,25 +20,24 @@
 
 // let addToWatchedBtn = document.querySelector('.addToWatched');
 // let removeFromWatchedBnt = document.querySelector('.removeFromWatched');
-
+const addWatchedChangeClassBtn = document.querySelector('.addWB');
 const WATCHED_MOVIES = 'watched_list';
 
 // ____________________________CHANGE BTN_______________________________________
 
-let addRemoveClassBtn = document.querySelector('.addWB');
+addWatchedChangeClassBtn.addEventListener('click', onClassAddWatched);
 
-addRemoveClassBtn.addEventListener('click', onClassAddWatched)
 function onClassAddWatched () {
 
-if (addRemoveClassBtn.classList.contains('addWB')) {
-  addRemoveClassBtn.textContent = 'REMOVE FROM WATCHED';
-  addRemoveClassBtn.classList.add('addQB');
-  addRemoveClassBtn.classList.remove('addWB');
+if (addWatchedChangeClassBtn.classList.contains('addWB')) {
+  addWatchedChangeClassBtn.textContent = 'REMOVE FROM WATCHED';
+  addWatchedChangeClassBtn.classList.add('removeWB');
+  addWatchedChangeClassBtn.classList.remove('addWB');
   addTaskToLocalStorage(movieObject);
 } else {
-  addRemoveClassBtn.textContent = 'ADD TO WATCHED';
-  addRemoveClassBtn.classList.add('addWB');
-  addRemoveClassBtn.classList.remove('addQB');
+  addWatchedChangeClassBtn.textContent = 'ADD TO WATCHED';
+  addWatchedChangeClassBtn.classList.add('addWB');
+  addWatchedChangeClassBtn.classList.remove('removeWB');
   RemoveFromWatchedBtn(movieObject);
 }
 }
@@ -153,37 +152,37 @@ export function getTaskFromLocalStorage(key = WATCHED_MOVIES) {
 
 // ___________________________________MARKUP__________________________________________
 
-export function renderTask({
-  poster_path,
-  // backdrop_path,
-  original_title,
-  // genres.name,
-  vote_average,
-  // vote_count,
-  // popularity,
-  release_date,
-}) {
-  return `
-  <li class="abcd">
-      <img
-        class="main-render__image"
-        src="${poster_path}"
-        alt="film poster"
-        loading="lazy"
-        width="395"
-        height="634"
-      />
-      <div class="main-render__description">
-        <h2 class="main-render__name">${original_title}</h2>
-        <p class="main-render__genre">
-          ${original_title}
-          <span class="main-render__year">${release_date}</span>
-          <span class="main-render__vote">>${vote_average}</span>
+// export function renderTask({
+//   poster_path,
+//   // backdrop_path,
+//   original_title,
+//   // genres.name,
+//   vote_average,
+//   // vote_count,
+//   // popularity,
+//   release_date,
+// }) {
+//   return `
+//   <li class="abcd">
+//       <img
+//         class="main-render__image"
+//         src="${poster_path}"
+//         alt="film poster"
+//         loading="lazy"
+//         width="395"
+//         height="634"
+//       />
+//       <div class="main-render__description">
+//         <h2 class="main-render__name">${original_title}</h2>
+//         <p class="main-render__genre">
+//           ${original_title}
+//           <span class="main-render__year">${release_date}</span>
+//           <span class="main-render__vote">>${vote_average}</span>
 
-        </p>
-      </div>
-    </li>`;
-}
+//         </p>
+//       </div>
+//     </li>`;
+// }
 // .join('');
 
 // export default './js/LSW';

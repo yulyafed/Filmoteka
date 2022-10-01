@@ -1,5 +1,5 @@
-import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.min.css';
+// import Pagination from 'tui-pagination';
+// import 'tui-pagination/dist/tui-pagination.min.css';  
 
 const HOME = 1;
 const SEARCH = 2;
