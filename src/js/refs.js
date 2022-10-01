@@ -1,12 +1,12 @@
 export const refs = {
     //home-header
-    searchForm: document.querySelector(".header__form"),
-    searchInput: document.querySelector('.header-form__input'),
+    searchForm: document.querySelector(".header-form"),
+    searchTextBox: document.querySelector('.header-search__text'),
 
 
     //main
-    mainRenderList: document.querySelector(".main-render"), 
-    mainLink: document.querySelector(".main__link"), 
+    mainRenderList: document.querySelector(".main-render"),
+    mainLink: document.querySelector(".main__link"),
     //footer
 
     //library-header
