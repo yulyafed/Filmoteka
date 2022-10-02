@@ -10,13 +10,39 @@ body.dark {
   width: 19px;
   z-index: 2;
   position: absolute;
-  top: 5%;
-  left: 3%;
+  top: 1px;
+  left: 1px;
   border-radius: 50%;
   transition: transform 300ms linear, background-color 300ms linear;
   &.dark {
     transform: translateX(100%);
     background-color: #000;
+    animation: dayscale 300ms linear;
+  }
+  &:not(.dark) {
+    animation: nightscale 300ms linear;
+  }
+}
+@keyframes dayscale {
+  0% {
+    transform: scaleY(1) translateX(0);
+  }
+  50% {
+    transform: scaleY(0.5);
+  }
+  100% {
+    transform: scaleY(1) translateX(100%);
+  }
+}
+@keyframes nightscale {
+  0% {
+    transform: scaleY(1) translateX(100%);
+  }
+  50% {
+    transform: scaleY(0.5);
+  }
+  100% {
+    transform: scaleY(1) translateX(0);
   }
 }
 .themetoggle {
@@ -25,8 +51,8 @@ body.dark {
   border-radius: 10px;
   background-color: #ff6b02;
   position: absolute;
-  top: 27%;
-  left: 50%;
+  top: 0;
+  left: 0;
   transform: translateX(-50%);
 }
 header {
@@ -35,24 +61,45 @@ header {
 .day {
   fill: white;
   position: absolute;
-  top: 26%;
-  left: 50%;
-  transform: translateX(-203%);
+  top: -2;
+  left: -48px;
+  transition: transform 300ms linear, fill 300ms linear;
 }
 .night {
   fill: white;
   position: absolute;
-  top: 26%;
-  left: 50%;
-  transform: translateX(100%);
+  top: -2;
+  right: -48px;
+  transition: transform 300ms linear, fill 300ms linear;
 }
 .main-render.dark {
   color: white;
 }
 header {
-    transition: box-shadow 300ms linear;
-    box-shadow: 0px 0px 100px 10px (rgb(17, 17, 17));
+  position: relative;
+  transition: box-shadow 300ms linear;
+  box-shadow: 0px 0px 100px 10px (rgb(17, 17, 17));
   &.dark {
     box-shadow: 0px 0px 100px 5px (rgb(255, 0, 0));
   }
+}
+.day-nigth-btn-box {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(110px);
+  @media screen and (min-width: 768px) {
+    transform: translateX(300px);
+  }
+  @media screen and (min-width: 1280px) {
+    transform: translateX(550px);
+  }
+  &.dark .day,
+  &.dark .night {
+    fill: rgb(91, 91, 91);
+    transform: rotate(360deg);
+  }
+}
+.header-library {
+  position: relative;
 }
