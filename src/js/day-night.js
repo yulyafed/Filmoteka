@@ -1,30 +1,31 @@
-(() => {
-  const refs = {
-    openDaynightBtn: document.querySelector('[data-daynight-open]'),
-    closeDaynightBtn: document.querySelector('[data-daynight-close]'),
-    daynight: document.querySelector('[data-daynight]'),
-    openDaynighthBtn: document.querySelector('[data-daynighth-open]'),
-    closeDaynighthBtn: document.querySelector('[data-daynighth-close]'),
-    daynighth: document.querySelector('[data-daynighth]'),
-    openDaynighttBtn: document.querySelector('[data-daynightt-open]'),
-    closeDaynighttBtn: document.querySelector('[data-daynightt-close]'),
-    daynightt: document.querySelector('[data-daynightt]'),
-  };
+document.querySelector('.themetoggle').addEventListener('click', event => {
+  event.preventDefault();
+  if (localStorage.getItem('theme') === 'dark') {
+    localStorage.removeItem('theme');
+  } else {
+    localStorage.setItem('theme', 'dark');
+  }
+  addDarkClassToHTML();
+});
 
-  refs.openDaynightBtn.addEventListener('change', toggleDaynight);
-  refs.closeDaynightBtn.addEventListener('change', toggleDaynight);
-  refs.openDaynighthBtn.addEventListener('change', toggleDaynighth);
-  refs.closeDaynighthBtn.addEventListener('change', toggleDaynighth);
-  refs.openDaynighttBtn.addEventListener('change', toggleDaynightt);
-  refs.closeDaynighttBtn.addEventListener('change', toggleDaynightt);
+function addDarkClassToHTML() {
+  try {
+    if (localStorage.getItem('theme') === 'dark') {
+      document.querySelector('body').classList.add('dark');
+      document.querySelector('.themetoggle').classList.add('dark');
+      document.querySelector('.material-icons').classList.add('dark');
+      document.querySelector('.main-render').classList.add('dark');
+      document.querySelector('header').classList.add('dark');
+      document.querySelector('.main-render').classList.add('dark');
+    } else {
+      document.querySelector('body').classList.remove('dark');
+      document.querySelector('.themetoggle').classList.remove('dark');
+      document.querySelector('.material-icons').classList.remove('dark');
+      document.querySelector('.main-render').classList.remove('dark');
+      document.querySelector('header').classList.remove('dark');
+      document.querySelector('.main-render').classList.remove('dark');
+    }
+  } catch (err) {}
+}
 
-  function toggleDaynight() {
-    refs.daynight.classList.toggle('body_dark');
-  }
-  function toggleDaynighth() {
-    refs.daynighth.classList.toggle('dark-header');
-  }
-  function toggleDaynightt() {
-    refs.daynightt.classList.toggle('dark-text-main');
-  }
-})();
+addDarkClassToHTML();

@@ -1,7 +1,6 @@
 import { fetchGenresOfMovie, fetchTrendMovies } from './ApiService';
 import { stylePagination } from './pagination';
 
-
 const START_PAGE = 1;
 let page = START_PAGE;
 let popularMoviesList = [];
@@ -93,14 +92,14 @@ export async function createHomeGallery(page) {
     })
     .join('');
 
-    setTimeout(() => {
-        if (popularMoviesList.length === 0) {
-          const errorText = `<li class="api-error">
+  setTimeout(() => {
+    if (popularMoviesList.length === 0) {
+      const errorText = `<li class="api-error">
             <p class="api-error__desc">The list of popular movies is temporarily unavailable.<br>Please, retry later!
             </p>
             </li>`;
-          cardsMain.innerHTML = errorText;
-        }
-      }, 500);
+      cardsMain.innerHTML = errorText;
     }
-    
+  }, 500);
+}
+

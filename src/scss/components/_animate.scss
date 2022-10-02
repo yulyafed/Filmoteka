@@ -86,9 +86,4 @@
     transform: scale(1.05);
   }
 }
-.main-render__image-box {
-  &:hover .main-render__image,
-  &:focus .main-render__image {
-    transform: scale(0.98);
-  }
-}
+

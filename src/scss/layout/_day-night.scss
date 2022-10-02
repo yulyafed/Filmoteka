@@ -1,0 +1,58 @@
+body {
+  transition: background 500ms linear;
+}
+body.dark {
+  background: #000;
+}
+.material-icons {
+  background-color: rgb(255, 255, 255);
+  height: 19px;
+  width: 19px;
+  z-index: 2;
+  position: absolute;
+  top: 5%;
+  left: 3%;
+  border-radius: 50%;
+  transition: transform 300ms linear, background-color 300ms linear;
+  &.dark {
+    transform: translateX(100%);
+    background-color: #000;
+  }
+}
+.themetoggle {
+  height: 21px;
+  width: 40px;
+  border-radius: 10px;
+  background-color: #ff6b02;
+  position: absolute;
+  top: 27%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+header {
+  position: relative;
+}
+.day {
+  fill: white;
+  position: absolute;
+  top: 26%;
+  left: 50%;
+  transform: translateX(-203%);
+}
+.night {
+  fill: white;
+  position: absolute;
+  top: 26%;
+  left: 50%;
+  transform: translateX(100%);
+}
+.main-render.dark {
+  color: white;
+}
+header {
+    transition: box-shadow 300ms linear;
+    box-shadow: 0px 0px 100px 10px (rgb(17, 17, 17));
+  &.dark {
+    box-shadow: 0px 0px 100px 5px (rgb(255, 0, 0));
+  }
+}

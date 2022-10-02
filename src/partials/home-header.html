@@ -21,25 +21,24 @@
           >
         </li>
       </ul>
+      
     </nav>
-    <form class="check">
-      <input
-        type="checkbox"
-        name="checkbox"
-        id="checkbox"
-        class="cbx hidden"
-        data-daynight-open
-        data-daynight-close
-        data-daynighth-open
-        data-daynighth-close
-      />
-      <label for="checkbox" class="switch"></label>
-    </form>
+    <span class="day">	
+<svg class="" width="24" height="24">
+          <use href="./images/icons.svg#icon-sun"></use>
+        </svg></span>
+      <a href="#" class="themetoggle">
+                    <span class="material-icons"></span></a> 
+                     <span class="night">	
+<svg class="" width="24" height="24">
+          <use href="./images/icons.svg#icon-moon"></use>
+        </svg></span>       
     <form class="header-form">
       <input
         type="text"
         placeholder="Movie search"
         class="header-form__input"
+        name="searchQuery"
       />
       <button class="header-form__btn">
         <svg class="header-form__btn-icon">
@@ -47,5 +46,6 @@
         </svg>
       </button>
     </form>
+    <p class="header-search__text"></p>
   </div>
 </header>
