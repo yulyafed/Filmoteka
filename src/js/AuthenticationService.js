@@ -7,7 +7,7 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 
-const firebaseConfig = {
+const FIREBASE_CONFIG = {
   apiKey: 'AIzaSyAHd99Ud80-AACb222vVMY-aWANkjky1aY',
   authDomain: 'project-group-5-3fbb9.firebaseapp.com',
   projectId: 'project-group-5-3fbb9',
@@ -16,31 +16,32 @@ const firebaseConfig = {
   appId: '1:618619648177:web:8a1b14c746b874718c4a90',
 };
 
-const app = initializeApp(firebaseConfig);
-const provider = new GoogleAuthProvider();
-const auth = getAuth();
 const btnLogin = document.getElementById('btnLogin');
 const btnLogout = document.getElementById('btnLogout');
 
-onAuthStateChanged(auth, user => {
-  if (user) {
-    const uid = user.uid;
-    toggleVisibility(btnLogin, false);
-    toggleVisibility(btnLogout, true);
-  } else {
-    console.log('User not authenticated', user);
-    toggleVisibility(btnLogin, true);
-    toggleVisibility(btnLogout, false);
+class AuthenticationService {
+  currentUser;
+
+  constructor() {
+    this.app = initializeApp(FIREBASE_CONFIG);
+    this.provider = new GoogleAuthProvider();
+    this.auth = getAuth();
+
+    onAuthStateChanged(this.auth, user => {
+      this.currentUser = user ? user : null;
+      if (user) {
+        btnLogin.style.display = 'none';
+        btnLogout.style.display = 'block';
+      } else {
+        btnLogin.style.display = 'block';
+        btnLogout.style.display = 'none';
+      }
+    });
   }
-});
 
-if (btnLogin) {
-  btnLogin.addEventListener('click', event => {
-    event.preventDefault();
-    signInWithPopup(auth, provider)
+  authenticateUser() {
+    return signInWithPopup(this.auth, this.provider)
       .then(result => {
-        //auth.updateCurrentUser(result.user);
-
         console.log(credential, token, user);
       })
       .catch(error => {
@@ -51,22 +52,39 @@ if (btnLogin) {
         const credential = GoogleAuthProvider.credentialFromError(error);
         console.log(errorCode, errorMessage, email, credential);
       });
-  });
-}
+  }
 
-if (btnLogout) {
-  btnLogout.addEventListener('click', event => {
-    event.preventDefault();
-    signOut(auth)
+  deAuthenticateUser() {
+    return signOut(this.auth)
       .then(() => {
         console.log('Signed out successfully');
       })
       .catch(error => {
         console.log('Sign out failed');
       });
+  }
+
+  get currentUser() {
+    return this.currentUser;
+  }
+
+  set currentUser(user) {
+    this.currentUser = user;
+  }
+}
+
+window.authenticationService = new AuthenticationService();
+
+if (btnLogin) {
+  btnLogin.addEventListener('click', async event => {
+    event.preventDefault();
+    await window.authenticationService.authenticateUser();
   });
 }
 
-const toggleVisibility = (element, visible) => {
-  element.style = visible ? 'display: block' : 'display: none';
-};
+if (btnLogout) {
+  btnLogout.addEventListener('click', async event => {
+    event.preventDefault();
+    await window.authenticationService.deAuthenticateUser();
+  });
+}
