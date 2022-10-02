@@ -8,6 +8,5 @@ import { onTopBallon } from './js/component/btn-to-top';
 import './js/openModal';
 import './js/day-night';
 import './js/teamModal';
-import './js/LSW';
-import './js/LSQ';
+import './js/set-to-watched';
 import './js/ApiService';

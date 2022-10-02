@@ -1,10 +1,7 @@
-
-
 import { refs } from './refs';
 import './ApiService';
-// import { getObjFromOpenModalToLocalStorage, getTextContent } from './LSW';
-// import './LSW';
 import { fetchMovieById } from './ApiService';
+import { init } from './set-to-watched';  
 
 const posterUrl = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2';
 
@@ -31,8 +28,7 @@ function openBackDrop(event) {
       'beforeend',
       createBackDropMarkUp(result)
     );
-        // const movieObject = getObjFromOpenModalToLocalStorage(result);
-        // getTextContent(movieObject);
+    init();
   });
 }
 
@@ -41,12 +37,13 @@ function createBackDropMarkUp(result) {
   const genres = result.genres.map(genre => {
     genresArray.push(genre.name);
   });
+
   const genreList = genresArray.join(', ');
   const markUp = `<div class="modal__info">
     <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2${
       result.poster_path
     }" alt="poster" class="modal__poster-img">
-    <div class="modal__text-box">
+    <div class="modal__text-box" id=${result.id}>
         <h1 class="modal__top-text">${
           result.original_title || result.original_name
         }</h1>
@@ -55,21 +52,7 @@ function createBackDropMarkUp(result) {
                 <th class="modal__table-top">Vote / Votes</th>
                 <th class="modal__table-text"><span class="vote">${
                   result.vote_average
-                }</span>/${result.vote_count}</th>
-    const genresArray = []
-    const genres = result.genres.map(genre => {
-        genresArray.push(genre.name)
-    })
-    const genreList = genresArray.join(", ")
-    const markUp = `<div class="modal__info">
-    <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2${result.poster_path}" alt="poster" class="modal__poster-img">
-    <div class="modal__text-box" id=${result.id}>
-        <h1 class="modal__top-text">${result.original_title || result.original_name
-            }</h1>
-        <table class="modal__table">
-            <tr class="modal__table-item">
-                <th class="modal__table-top">Vote / Votes</th>
-                <th class="modal__table-text"><span class="vote">${result.vote_average}</span>   /   ${result.vote_count}</th>
+                }</span>   /   ${result.vote_count}</th>
             </tr>
             <tr class="modal__table-item">
                 <th class="modal__table-top">Popularity</th>
@@ -87,12 +70,11 @@ function createBackDropMarkUp(result) {
         <p class="modal__text modal__text--header">About</p>
         <p class="modal__text">${result.overview}</p>
         <ul class="modal__btn-list">
-            <li class="modal__btn-item"><button class="modal__choice-btn modal__choice-btn--watched" data-modBtn="addToWatchedBtn"></button></li>
-            <li class="modal__btn-item"><button class="modal__choice-btn modal__choice-btn--queue" data-modBtn="addToQueuedBtn"></button>
+            <li class="modal__btn-item"><button class="modal__choice-btn modal__choice-btn--watched js-watched" data-modBtn="addToWatchedBtn">ADD TO WATCHED</button></li>
+            <li class="modal__btn-item"><button class="modal__choice-btn modal__choice-btn--queue js-queue" data-modBtn="addToQueuedBtn">ADD TO QUEUE</button>
             </li>
         </ul>
-    </div>
-</div>`;
+    </div>`;
   return markUp;
 }
 function cleanBackDrop() {
@@ -121,4 +103,3 @@ export {
   modalKeyDown,
   closeModal,
 };
-export { toggleClassHidden, openBackDrop, cleanBackDrop, modalKeyDown, closeModal }
