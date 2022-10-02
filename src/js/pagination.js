@@ -1,5 +1,5 @@
-// import Pagination from 'tui-pagination';
-// import 'tui-pagination/dist/tui-pagination.min.css';  
+import Pagination from 'tui-pagination';
+import 'tui-pagination/dist/tui-pagination.min.css';  
 
 const HOME = 1;
 const SEARCH = 2;
@@ -34,6 +34,7 @@ const paginationOptions = {
   },
 };
 
+
 const paginationBoxEl = document.querySelector('#tui-pagination-container');
 
 const initPagination = (e_paginationOptions = {}) => {
@@ -43,6 +44,10 @@ const initPagination = (e_paginationOptions = {}) => {
 };
 
 
+const updateTotalPagesNumber = (totalResults, totalPages) => {
+  site.pagination.reset(totalResults);
+  paginationOptions.totalPages = totalPages;
+};
 
 const getCurrentPage = () => site.pagination.getCurrentPage();
 
@@ -77,13 +82,14 @@ const stylePagination = (firstPage, curPage) => {
   }
 };
 
+
 export {
-  initPagination,  
+  initPagination,
+  updateTotalPagesNumber,
   getCurrentPage,
   stylePagination,
   HOME,
   SEARCH,
   MY_LIBRARY,
   site,
-  paginationBoxEl,
 };
