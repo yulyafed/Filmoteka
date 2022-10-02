@@ -10,4 +10,4 @@ import './js/day-night';
 import './js/teamModal';
 import './js/set-to-watched';
 import './js/ApiService';
-
+import './js/AuthenticationService';
