@@ -5,8 +5,15 @@ const BASE_URL = 'https://api.themoviedb.org/3'
 const LANG = 'en-US'
 
 const fetchSearchAnyMovie = async (searchMovie, page = 1) => {
-  const response = await axios.get(`${BASE_URL}/search/movie?api_key=${API_KEY}&language=${LANG}&query=${searchMovie}&page=${page}&include_adult=false`);
-  return response;
+  let result = null;
+  try {
+    const response = await axios.get(`${BASE_URL}/search/movie?api_key=${API_KEY}&language=${LANG}&query=${searchMovie}&page=${page}&include_adult=false`);
+    result = response.data;
+      } catch (err) {
+    console.error(error);
+  }
+  
+  return result;
 };
 
 const fetchMovieById = async movieId => {
@@ -25,4 +32,4 @@ const fetchGenresOfMovie = async () => {
 };
 
 
-export {fetchSearchAnyMovie, fetchMovieById, fetchTrendMovies, fetchGenresOfMovie};
+export { fetchSearchAnyMovie, fetchMovieById, fetchTrendMovies, fetchGenresOfMovie };
