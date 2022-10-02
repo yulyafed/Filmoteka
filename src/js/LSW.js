@@ -1,3 +1,34 @@
+// refs.mainRenderList.addEventListener("click", getToButtons)
+
+// function getToButtons(evt) {
+//     evt.preventDefault()
+
+//     setTimeout(() => {
+//         const modalWatchBTN = document.querySelector("#backdrop > div > div > div > div > ul > li:nth-child(1) > button")
+//         console.log(modalWatchBTN);
+//         modalWatchBTN.addEventListener("click", showSome)
+// }, 1000);
+// }
+
+// function showSome(evt) {
+//     evt.preventDefault()
+
+//     const div = evt.target.closest("div")
+//     const id = div.getAttribute("id")
+
+//     fetchMovieById(id).then(res => {
+//         console.log(res.data);
+//         const info = res.data
+//         localStorage.setItem("watched", JSON.stringify(info))
+//     })
+// }
+
+
+
+
+
+
+
 // import axios from 'axios';
 // const API_KEY = 'fe8296f47fdee638ac9cbbf0db61e69d';
 // const BASE_URL = 'https://api.themoviedb.org/3';
