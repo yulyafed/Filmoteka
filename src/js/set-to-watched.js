@@ -5,9 +5,21 @@ import './openModal';
 const WATCHED_MOVIES = 'watched_list';
 const QUEUE_MOVIES = 'queue_list';
 
+function isAuthenticated() {
+  const currentUser =
+    window.authenticationService && window.authenticationService.currentUser;
+  return !!currentUser;
+}
+
 function onWatched(evt) {
+  if (!isAuthenticated()) {
+    alert('Your are not allowed to perform this action');
+    return;
+  }
+
   const div = evt.target.closest('div');
   const id = div.getAttribute('id');
+
   if (evt.target.textContent === 'ADD TO WATCHED') {
     getInfo(id, WATCHED_MOVIES);
     evt.target.textContent = 'REMOVE FROM WATCHED';
@@ -18,8 +30,14 @@ function onWatched(evt) {
 }
 
 function onQueue(evt) {
+  if (!isAuthenticated()) {
+    alert('Your are not allowed to perform this action');
+    return;
+  }
+
   const div = evt.target.closest('div');
   const id = div.getAttribute('id');
+
   if (evt.target.textContent === 'ADD TO QUEUE') {
     getInfo(id, QUEUE_MOVIES);
     evt.target.textContent = 'REMOVE FROM QUEUE';
