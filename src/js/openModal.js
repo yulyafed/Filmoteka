@@ -34,7 +34,7 @@ function createBackDropMarkUp(result) {
     const genreList = genresArray.join(", ")
     const markUp = `<div class="modal__info">
     <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2${result.poster_path}" alt="poster" class="modal__poster-img">
-    <div class="modal__text-box">
+    <div class="modal__text-box" id=${result.id}>
         <h1 class="modal__top-text">${result.original_title || result.original_name
             }</h1>
         <table class="modal__table">
@@ -86,4 +86,4 @@ function closeModal(event) {
     }
 }
 
-export {toggleClassHidden, openBackDrop, cleanBackDrop, modalKeyDown, closeModal}
+export { toggleClassHidden, openBackDrop, cleanBackDrop, modalKeyDown, closeModal }
