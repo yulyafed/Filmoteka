@@ -104,3 +104,5 @@ export {
   closeModal,
 };
 
+  import {getToBtns} from "./component/getToBtns"
+refs.mainRenderList.addEventListener("click", getToBtns)
