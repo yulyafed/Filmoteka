@@ -1,7 +1,7 @@
 import { refs } from './js/refs';
 import './js/trendsMovies';
 import './js/searchMovies';
-import './js/renderGalleryCardsMovies';
+import './js/movieHelpers';
 import './js/pagination';
 import './js/preloader';
 import { onTopBallon } from './js/component/btn-to-top';
