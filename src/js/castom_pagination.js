@@ -20,38 +20,38 @@ export default function pagination(currentPage, allPages) {
   globalCurrentpage = currentPage;
 
   if (currentPage > 1) {
-    markup += `<li>&#129144;</li>`
+    markup += `<li class="pagination-left-arrow">&#129144;</li>`
   }
   if (currentPage > 1) {
-    markup += `<li>1</li>`
+    markup += `<li class="pagination-number-first">1</li>`
   }
   if (currentPage > 4) {
-    markup += `<li>...</li>`
+    markup += `<li class="pagination-dots">...</li>`
   }
   if (currentPage > 3) {
-    markup += `<li>${beforeTwoPage}</li>`
+    markup += `<li class="pagination-number">${beforeTwoPage}</li>`
   }
   if (currentPage > 2) {
-    markup += `<li>${beforePage}</li>`
+    markup += `<li class="pagination-number">${beforePage}</li>`
   }
-  markup += `<li><b>${currentPage}</b></li>`
+  markup += `<li class="pagination-number active"><b>${currentPage}</b></li>`
 
   if (allPages - 1 > currentPage) {
-    markup += `<li>${afterPage}</li>`
+    markup += `<li class="pagination-number">${afterPage}</li>`
   }
 
   if (allPages - 2 > currentPage) {
-    markup += `<li>${afterTwoPage}</li>`
+    markup += `<li class="pagination-number">${afterTwoPage}</li>`
   }
 
 
   if (allPages - 3 > currentPage) {
-    markup += `<li>...</li>`
+    markup += `<li class="pagination-dots">...</li>`
   }
 
   if (allPages > currentPage) {
-    markup += `<li>${allPages}</li>`
-    markup += `<li>&#129146;<li>`
+    markup += `<li class="pagination-number">${allPages}</li>`
+    markup += `<li class="pagination-right-arrow">&#129146;<li>`
   }
 
   paginationBox.innerHTML = markup;
