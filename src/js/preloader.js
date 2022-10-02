@@ -7,4 +7,3 @@ window.addEventListener('load', () => {
         preloader.remove();
     }, 1000);
 });
-
