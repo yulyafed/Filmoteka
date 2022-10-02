@@ -44,9 +44,11 @@ function createBackDropMarkUp(result) {
       result.poster_path
     }" alt="poster" class="modal__poster-img">
     <div class="modal__text-box" id=${result.id}>
+
         <h1 class="modal__top-text">${
           result.original_title || result.original_name
         }</h1>
+
         <table class="modal__table">
             <tr class="modal__table-item">
                 <th class="modal__table-top">Vote / Votes</th>
@@ -96,6 +98,7 @@ function closeModal(event) {
   }
 }
 
+
 export {
   toggleClassHidden,
   openBackDrop,
@@ -103,3 +106,4 @@ export {
   modalKeyDown,
   closeModal,
 };
+
