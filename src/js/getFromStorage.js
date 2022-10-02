@@ -95,4 +95,19 @@ function openOqueueList(evt) {
 function cleanLibrary() {
     libraryMainList.innerHTML = ""
 }
+refs.modalCloseBtn.addEventListener("click", closeAndClean)
+function closeAndClean(evt) {
+    const watchedList = JSON.parse(localStorage.getItem("watched_list"))
+    const queuedList = JSON.parse(localStorage.getItem("queue_list"))
 
+    if (watchedList.length === 0) {
+        libraryMainList.innerHTML = `<li class="api-error">
+            <p class="api-error__desc">The list of watched movies is empty.</p>
+            </li>`
+    }
+    if (queuedList.length === 0) {
+        libraryMainList.innerHTML = `<li class="api-error">
+            <p class="api-error__desc">The list of watched movies is empty.</p>
+            </li>`
+    }
+}
