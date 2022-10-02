@@ -1,22 +1,33 @@
-(() => {
-  const refs = {
-    openDaynightBtn: document.querySelector('[data-daynight-open]'),
-    closeDaynightBtn: document.querySelector('[data-daynight-close]'),
-    daynight: document.querySelector('[data-daynight]'),
-    openDaynighthBtn: document.querySelector('[data-daynighth-open]'),
-    closeDaynighthBtn: document.querySelector('[data-daynighth-close]'),
-    daynighth: document.querySelector('[data-daynighth]'),
-  };
-
-  refs.openDaynightBtn.addEventListener('change', toggleDaynight);
-  refs.closeDaynightBtn.addEventListener('change', toggleDaynight);
-  refs.openDaynighthBtn.addEventListener('change', toggleDaynighth);
-  refs.closeDaynighthBtn.addEventListener('change', toggleDaynighth);
-
-  function toggleDaynight() {
-    refs.daynight.classList.toggle('body_dark');
+document.querySelector('.themetoggle').addEventListener('click', event => {
+  event.preventDefault();
+  if (localStorage.getItem('theme') === 'dark') {
+    localStorage.removeItem('theme');
+  } else {
+    localStorage.setItem('theme', 'dark');
   }
-  function toggleDaynighth() {
-    refs.daynighth.classList.toggle('dark-header');
-  }
-})();
+  addDarkClassToHTML();
+});
+
+function addDarkClassToHTML() {
+  try {
+    if (localStorage.getItem('theme') === 'dark') {
+      document.querySelector('body').classList.add('dark');
+      document.querySelector('.themetoggle').classList.add('dark');
+      document.querySelector('.material-icons').classList.add('dark');
+      document.querySelector('.main-render').classList.add('dark');
+      document.querySelector('header').classList.add('dark');
+      document.querySelector('.main-render').classList.add('dark');
+      document.querySelector('.day-nigth-btn-box').classList.add('dark');
+    } else {
+      document.querySelector('body').classList.remove('dark');
+      document.querySelector('.themetoggle').classList.remove('dark');
+      document.querySelector('.material-icons').classList.remove('dark');
+      document.querySelector('.main-render').classList.remove('dark');
+      document.querySelector('header').classList.remove('dark');
+      document.querySelector('.main-render').classList.remove('dark');
+      document.querySelector('.day-nigth-btn-box').classList.remove('dark');
+    }
+  } catch (err) {}
+}
+
+addDarkClassToHTML();

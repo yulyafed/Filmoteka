@@ -1,4 +1,7 @@
 import { fetchGenresOfMovie, fetchTrendMovies } from './ApiService';
+import { updateTotalPagesNumber, stylePagination, HOME, site } from './pagination';
+import pagination from'./castom_pagination';
+import { preloader } from './preloader';
 import { stylePagination } from './pagination';
 
 
@@ -11,27 +14,29 @@ const cardsMain = document.querySelector('.main-render');
 createHomeGallery(page);
 
 export async function createHomeGallery(page) {
+  site.currentPage = HOME;
 
   await fetchTrendMovies(page)
-    .then(({ data: { results } }) => {
-      stylePagination(START_PAGE, page);
-      // console.log(results);
+  .then(({data }) => {
+    page === START_PAGE;
+    pagination(data.page, data.total_pages)
+    console.log(data); 
+    // stylePagination(START_PAGE, page);
 
-      popularMoviesList = [];
-      results.forEach(movie => {
-        let movieData = {
-          id: movie.id,
-          poster: movie.poster_path,
-          title: movie.original_title,
-          genres: movie.genre_ids,
-          year: movie.release_date ? movie.release_date.slice(0, 4) : 'Year N/A',
-        };
-        // console.log(movieData);
+    popularMoviesList = [];
+    data.results.forEach(movie => {
+      let movieData = {
+        id: movie.id,
+        poster: movie.poster_path,
+        title: movie.original_title,
+        genres: movie.genre_ids,
+        year: movie.release_date ? movie.release_date.slice(0, 4) : 'Year N/A',
+      };
 
-        popularMoviesList.push(movieData);
-      });
-    })
-    .catch(error => console.log(error));
+      popularMoviesList.push(movieData);
+    });
+  })
+  .catch(error => console.log(error));
 
   await fetchGenresOfMovie()
     .then(response => {
@@ -47,6 +52,7 @@ export async function createHomeGallery(page) {
             }
           });
           return id;
+          
         });
 
         switch (true) {
@@ -93,14 +99,15 @@ export async function createHomeGallery(page) {
     })
     .join('');
 
-    setTimeout(() => {
-        if (popularMoviesList.length === 0) {
-          const errorText = `<li class="api-error">
+  setTimeout(() => {
+    if (popularMoviesList.length === 0) {
+      const errorText = `<li class="api-error">
             <p class="api-error__desc">The list of popular movies is temporarily unavailable.<br>Please, retry later!
             </p>
             </li>`;
-          cardsMain.innerHTML = errorText;
-        }
-      }, 500);
+      cardsMain.innerHTML = errorText;
     }
-    
+
+  }, 500);
+}
+

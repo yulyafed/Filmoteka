@@ -17,34 +17,39 @@ function toggleClassHidden(event) {
 function openBackDrop(event) {
     event.preventDefault()
     const currentLink = event.target.closest("a")
-    const currentId = currentLink.getAttribute("id")
+    const currentId = currentLink.getAttribute("data-id")
+    console.log(currentId);
     fetchMovieById(currentId)
-    .then(data => {
-        refs.modalInfoBox.insertAdjacentElement("beforeend", createBackDropMarkUp(data))
+        .then(res => {
+            const result = res.data
+            console.log(result);
+        refs.modalInfoBox.insertAdjacentHTML("beforeend", createBackDropMarkUp(result))
     })
 }
-function createBackDropMarkUp(data) {
+function createBackDropMarkUp(result) {
     const genresArray = []
-    const genres = data.genres.map(genre => {
+    const genres = result.genres.map(genre => {
         genresArray.push(genre.name)
     })
-    const genreList = genreArray.join(", ")
+    const genreList = genresArray.join(", ")
     const markUp = `<div class="modal__info">
     <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2${result.poster_path}" alt="poster" class="modal__poster-img">
     <div class="modal__text-box" id=${result.id}>
         <h1 class="modal__top-text">${result.original_title || result.original_name}</h1>
+        <h1 class="modal__top-text">${result.original_title || result.original_name
+            }</h1>
         <table class="modal__table">
             <tr class="modal__table-item">
                 <th class="modal__table-top">Vote / Votes</th>
-                <th class="modal__table-text"><span class="vote">${data.vote_average}</span>/${data.vote_count}</th>
+                <th class="modal__table-text"><span class="vote">${result.vote_average}</span>   /   ${result.vote_count}</th>
             </tr>
             <tr class="modal__table-item">
                 <th class="modal__table-top">Popularity</th>
-                <th class="modal__table-text">${data.popularity}</th>
+                <th class="modal__table-text">${result.popularity}</th>
             </tr>
             <tr class="modal__table-item">
                 <th class="modal__table-top">Original Title</th>
-                <th class="modal__table-text">${data.original_title}</th>
+                <th class="modal__table-text">${result.original_title}</th>
             </tr>
             <tr class="modal__table-item">
                 <th class="modal__table-top">Genre</th>
@@ -52,7 +57,7 @@ function createBackDropMarkUp(data) {
             </tr>
         </table>
         <p class="modal__text modal__text--header">About</p>
-        <p class="modal__text">${data.overview}</p>
+        <p class="modal__text">${result.overview}</p>
         <ul class="modal__btn-list">
             <li class="modal__btn-item"><button class="modal__choice-btn modal__choice-btn--watched">add to
                     Watched</button></li>
@@ -82,4 +87,6 @@ function closeModal(event) {
     }
 }
 
+
 export {toggleClassHidden, openBackDrop, cleanBackDrop, modalKeyDown, closeModal}
+export { toggleClassHidden, openBackDrop, cleanBackDrop, modalKeyDown, closeModal }

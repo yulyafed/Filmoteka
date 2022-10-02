@@ -4,11 +4,12 @@
 @import './common/reset';
 @import './common/base';
 
-@import './components/day-night';
+@import './layout/day-night';
 @import './components/animate';
 @import './components/header-home';
 @import './components/header-library';
 @import './components/main-section';
+@import './components/pagination';
 @import './layout/btn-to-top';
 @import './components/footer';
 

@@ -7,14 +7,14 @@ openModalBtn.addEventListener('click', onOpenModal);
 function onOpenModal() {
   window.addEventListener('keydown', onEscClick);
   teamBackdrop.classList.remove('is-hidden');
-  document.body.classList.add('no-scroll');
+  document.body.style.overflow = 'hidden';
 }
 
 closeModalBtn.addEventListener('click', onCloseModal);
 function onCloseModal() {
   window.removeEventListener('keydown', onEscClick);
   teamBackdrop.classList.add('is-hidden');
-  document.body.classList.remove('no-scroll');
+  document.body.style.overflow = '';
 }
 
 teamBackdrop.addEventListener('click', onBackdropClick);

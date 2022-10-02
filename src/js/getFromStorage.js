@@ -1,4 +1,5 @@
-import {toggleClassHidden, openBackDrop, cleanBackDrop, modalKeyDown, closeModal} from "./openModal"
+import axios from "axios"
+import { toggleClassHidden, openBackDrop, cleanBackDrop, modalKeyDown, closeModal } from "./openModal"
 const libraryMainList = document.querySelector("[data-film-modal-open]")
 const watchedBTN = document.querySelector(".watched-btn")
 const queueBTN = document.querySelector(".queue-btn")
@@ -9,32 +10,39 @@ queueBTN.addEventListener("click", openOqueueList)
 watchedBTN.addEventListener("click", openWathedList)
 
 
-function createLibraryMarkup() {
-    const markup = data.map(({ id, poster_path, original_title, name, genres, release_date,  first_air_date}) => {
-        const item = `<li class="main-render__item">
-        <a href="#" class="main-render__link" data-id="${id}">
+function createLibraryMarkup(film) {
+
+    const genresList = []
+    const genreList = film.genres.map(genre => {
+        genresList.push(genre.name)
+    })
+    const genres = genresList.join(', ')
+    
+    const date = film.release_date.slice(0, 4) || film.first_air_date.slice(0, 4)
+    console.log(date);
+
+    const markup = `<li class="main-render__item">
+        <a href="#" class="main-render__link" data-id="${film.id}">
         <div class="main-render__image-box">
             <img class="main-render__image"
-            src="https://image.tmdb.org/t/p/w500${poster_path}"
-            alt="${original_title || name}" 
-            data-id="${id}">
+            src="https://image.tmdb.org/t/p/w500${film.poster_path}"
+            alt="${film.original_title || film.name}" 
+            data-id="${film.id}">
             </div>
             <div class="main-render__discription">
-            <h2 class="main-render__title" data-id="${id}">
-            ${original_title || name}
+            <h2 class="main-render__title" data-id="${film.id}">
+            ${film.original_title || film.name}
             </h2>
-            <p class="main-render__text" data-id="${id}">${genres} | ${release_date || first_air_date}</p>
+            <p class="main-render__text" data-id="${film.id}">${genres} | ${date}</p>
             </div>
         </a>
         </li>`
-        return item
-    }).join("")
     return markup
 }
 function showWatchedList(evt) {
     evt.preventDefault()
 
-    const watched = localStorage.getItem("watched")
+    const watched = localStorage.getItem("watched_list")
     const watchedFilms = watched ? JSON.parse(watched) : []
 
     if (watchedFilms.length === 0) {
@@ -43,13 +51,16 @@ function showWatchedList(evt) {
             </li>`
     }
     else {
-        libraryMainList.insertAdjacentHTML("beforeend", createLibraryMarkup)
+        watchedFilms.map(film => {
+            libraryMainList.insertAdjacentHTML("beforeend", createLibraryMarkup(film))
+        })
+        
     }
 }
 function showQueuedList(evt) {
     evt.preventDefault()
 
-    const queue = localStorage.getItem("queue")
+    const queue = localStorage.getItem("queue_list")
     const queueFilms = queue ? JSON.parse(queue) : []
 
     if (queueFilms.length === 0) {
@@ -58,7 +69,9 @@ function showQueuedList(evt) {
             </li>`
     }
     else {
-        libraryMainList.insertAdjacentHTML("beforeend", createLibraryMarkup)
+        queueFilms.map(film => {
+            libraryMainList.insertAdjacentHTML("beforeend", createLibraryMarkup(film))
+        })
     }
 }
 function openWathedList(evt) {
