@@ -17,6 +17,7 @@ async function onGalleryMoviesFormSubmit(e) {
     refs.mainRenderList.innerHTML = '';
 
     const response = await fetchSearchAnyMovie(query);
+    
     if (response.data.total_pages === 0) {
         refs.searchTextBox.innerHTML = `Search result not successful. Enter the correct movie name and `;
         return;
