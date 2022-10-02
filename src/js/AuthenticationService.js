@@ -47,10 +47,7 @@ class AuthenticationService {
       .catch(error => {
         // TODO
         const errorCode = error.code;
-        const errorMessage = error.message;
-        const email = error.customData.email;
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log(errorCode, errorMessage, email, credential);
+        console.log(errorCode);
       });
   }
 
