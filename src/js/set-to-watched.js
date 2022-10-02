@@ -11,8 +11,10 @@ function onWatched(evt) {
   if (evt.target.textContent === 'ADD TO WATCHED') {
     getInfo(id, WATCHED_MOVIES);
     evt.target.textContent = 'REMOVE FROM WATCHED';
+    evt.target.setAttribute("data-modBtn", "addToWatchedBtn")
   } else {
     evt.target.textContent = 'ADD TO WATCHED';
+    evt.target.removeAttribute("data-modBtn")
     removeFromLocalStorage(WATCHED_MOVIES, id);
   }
 }
@@ -23,8 +25,10 @@ function onQueue(evt) {
   if (evt.target.textContent === 'ADD TO QUEUE') {
     getInfo(id, QUEUE_MOVIES);
     evt.target.textContent = 'REMOVE FROM QUEUE';
+    evt.target.setAttribute("data-modBtn", "addToQueuedBtn")
   } else {
     evt.target.textContent = 'ADD TO QUEUE';
+    evt.target.removeAttribute("data-modBtn")
     removeFromLocalStorage(QUEUE_MOVIES, id);
   }
 }
