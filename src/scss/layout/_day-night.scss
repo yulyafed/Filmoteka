@@ -20,7 +20,7 @@ body.dark {
     animation: dayscale 300ms linear;
   }
   &:not(.dark) {
-    animation: nightscale 300ms linear;
+    animation: nightscale 300ms;
   }
 }
 @keyframes dayscale {
@@ -102,4 +102,12 @@ header {
 }
 .header-library {
   position: relative;
+}
+.pagination.dark li {
+  color: #fff;
+  fill: #fff;
+  background-color: rgb(67, 66, 66);
+  &.active {
+    background-color: #ff6b02;
+  }
 }
