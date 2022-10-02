@@ -20,10 +20,8 @@ function openBackDrop(event) {
   event.preventDefault();
   const currentLink = event.target.closest('a');
   const currentId = currentLink.getAttribute('data-id');
-  console.log(currentId);
   fetchMovieById(currentId).then(res => {
     const result = res.data;
-    console.log(result);
     refs.modalInfoBox.insertAdjacentHTML(
       'beforeend',
       createBackDropMarkUp(result)
@@ -31,7 +29,6 @@ function openBackDrop(event) {
     init();
   });
 }
-
 function createBackDropMarkUp(result) {
   const genresArray = [];
   const genres = result.genres.map(genre => {
@@ -72,8 +69,8 @@ function createBackDropMarkUp(result) {
         <p class="modal__text modal__text--header">About</p>
         <p class="modal__text">${result.overview}</p>
         <ul class="modal__btn-list">
-            <li class="modal__btn-item"><button class="modal__choice-btn modal__choice-btn--watched js-watched" data-modBtn="addToWatchedBtn">ADD TO WATCHED</button></li>
-            <li class="modal__btn-item"><button class="modal__choice-btn modal__choice-btn--queue js-queue" data-modBtn="addToQueuedBtn">ADD TO QUEUE</button>
+            <li class="modal__btn-item"><button class="modal__choice-btn modal__choice-btn--watched js-watched">ADD TO WATCHED</button></li>
+            <li class="modal__btn-item"><button class="modal__choice-btn modal__choice-btn--queue js-queue">ADD TO QUEUE</button>
             </li>
         </ul>
     </div>`;
