@@ -1,26 +1,8 @@
-const addQueueChangeClassBtn = document.querySelector('.addQueueBtn');
+const addQueueChangeClassBtn = document.querySelector(
+  'button[data-modBtn="addToQueueBtn"]'
+);
 const QUEUE_MOVIES = 'queue_list';
 
-// ____________________________CHANGE BTN_______________________________________
-
-addQueueChangeClassBtn.addEventListener('click', onClassAddWatched);
-
-function onClassAddWatched () {
-
-if (addQueueChangeClassBtn.classList.contains('addWB')) {
-  addQueueChangeClassBtn.textContent = 'REMOVE FROM QUEUE';
-  addQueueChangeClassBtn.classList.add('removeWB');
-  addQueueChangeClassBtn.classList.remove('addWB');
-  addTaskToLocalStorage(movieObject);
-} else {
-  addQueueChangeClassBtn.textContent = 'ADD TO QUEUE';
-  addQueueChangeClassBtn.classList.add('addWB');
-  addQueueChangeClassBtn.classList.remove('removeWB');
-  RemoveFromWatchedBtn(movieObject);
-}
-}
-
-// __________________________OBJECT___________________________________
 let movieObject = {
   adult: false,
   backdrop_path: '/ng6SSB3JhbcpKTwbPDsRwUYK8Cq.jpg',
@@ -87,25 +69,35 @@ let movieObject = {
   vote_average: 7.489,
   vote_count: 13129,
 };
+// ____________________________CHANGE BTN_______________________________________
+getTextContent();
 
-// const imgCard = document.querySelector('.main-render__image-box')
-// console.log(imgCard);
+addQueueChangeClassBtn.addEventListener('click', onClassAddWatched);
 
-// ___________________________________________________________________
+function getTextContent() {
+  const parsedLocalStorage = getTextContentLocalStorage(QUEUE_MOVIES);
+  const listOfMovies = JSON.parse(parsedLocalStorage);
+  // console.log(movieObject);
+  const idMovie = movieObject.id;
+  const index = listOfMovies.findIndex(film => film.id === idMovie);
+  if (index !== -1) {
+    addQueueChangeClassBtn.textContent = 'REMOVE FROM QUEUE';
+  } else addQueueChangeClassBtn.textContent = 'ADD TO QUEUE';
+}
 
-// addToWatchedBtn.addEventListener('click', onAddToWatchBtn);
-// removeFromWatchedBnt.addEventListener('click', onRemoveFromWatchedBtn);
+function getTextContentLocalStorage(key = QUEUE_MOVIES) {
+  return localStorage.getItem(key);
+}
 
-// function onAddToWatchBtn() {
-//   // addTaskToLocalStorage(movieObject);
-//   // myLibraryLink.insertAdjacentHTML('beforeend', renderTask(movieObject));
-// }
-
-// function onRemoveFromWatchedBtn() {
-//   // RemoveFromWatchedBtn(movieObject);
-//   // myLibraryLink.insertAdjacentHTML('beforeend', renderTask(movieObject));
-// }
-
+function onClassAddWatched() {
+  if (addQueueChangeClassBtn.textContent === 'ADD TO QUEUE') {
+    addQueueChangeClassBtn.textContent = 'REMOVE FROM QUEUE';
+    addTaskToLocalStorage(movieObject);
+  } else if (addQueueChangeClassBtn.textContent === 'REMOVE FROM QUEUE') {
+    addQueueChangeClassBtn.textContent = 'ADD TO QUEUE';
+    RemoveFromWatchedBtn(movieObject);
+  }
+}
 // ____________________________________SERVIS_________________________________________//
 
 function addTaskToLocalStorage(movieObject) {
