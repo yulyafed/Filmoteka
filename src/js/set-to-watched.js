@@ -88,6 +88,7 @@ function addToLocalStorage(key, movieObject) {
     return listOfMovies;
   }
 }
+
 function getTaskFromLocalStorage(key) {
   return localStorage.getItem(key);
 }
