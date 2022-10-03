@@ -8,7 +8,7 @@ const fetchSearchAnyMovie = async (searchMovie, page = 1) => {
   let result = null;
   try {
     const response = await axios.get(`${BASE_URL}/search/movie?api_key=${API_KEY}&language=${LANG}&query=${searchMovie}&page=${page}&include_adult=false`);
-    result = response.data;
+    result = response;
       } catch (err) {
     console.error(error);
   }
@@ -29,6 +29,7 @@ const fetchTrendMovies = async page => {
 const fetchGenresOfMovie = async () => {
   const genres = await axios.get(`${BASE_URL}/genre/movie/list?api_key=${API_KEY}`);
   return genres;
+  
 };
 
 

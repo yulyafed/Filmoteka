@@ -2,7 +2,6 @@ import { fetchGenresOfMovie, fetchTrendMovies } from './ApiService';
 import { updateTotalPagesNumber, stylePagination, HOME, site } from './pagination';
 import pagination from'./castom_pagination';
 import { preloader } from './preloader';
-import { stylePagination } from './pagination';
 
 
 const START_PAGE = 1;
@@ -17,11 +16,11 @@ export async function createHomeGallery(page) {
   site.currentPage = HOME;
 
   await fetchTrendMovies(page)
+  
   .then(({data }) => {
+    
     page === START_PAGE;
     pagination(data.page, data.total_pages)
-    console.log(data); 
-    // stylePagination(START_PAGE, page);
 
     popularMoviesList = [];
     data.results.forEach(movie => {
@@ -43,10 +42,12 @@ export async function createHomeGallery(page) {
       const {
         data: { genres },
       } = response;
+      // console.log(response);
 
       popularMoviesList.forEach(movie => {
         movie.genres = movie.genres.map(id => {
           genres.forEach(obj => {
+            // console.log(obj);
             if (obj.id === id) {
               id = obj.name;
             }
@@ -54,7 +55,7 @@ export async function createHomeGallery(page) {
           return id;
           
         });
-
+        
         switch (true) {
           case movie.genres.length > 0 && movie.genres.length <= 2:
             movie.genres = movie.genres.join(', ');

@@ -2,6 +2,7 @@ import { refs } from './refs';
 import './ApiService';
 import { fetchMovieById } from './ApiService';
 import { init } from './set-to-watched';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 const posterUrl = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2';
 
@@ -18,7 +19,10 @@ function toggleClassHidden(event) {
 }
 function openBackDrop(event) {
   event.preventDefault();
+  Loading.dots({
+    svgColor: '#ff6b02',
 
+    });
 
 
     if (event.target.parentNode.nodeName !== "A") {
@@ -30,6 +34,7 @@ function openBackDrop(event) {
   const currentId = currentLink.getAttribute('data-id');
   fetchMovieById(currentId).then(res => {
     const result = res.data;
+    Loading.remove(1000);
     refs.modalInfoBox.insertAdjacentHTML(
       'beforeend',
       createBackDropMarkUp(result)
