@@ -1,6 +1,7 @@
 import './ApiService';
 import { fetchMovieById } from './ApiService';
 import './openModal';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const WATCHED_MOVIES = 'watched_list';
 const QUEUE_MOVIES = 'queue_list';
@@ -13,7 +14,8 @@ function isAuthenticated() {
 
 function onWatched(evt) {
   if (!isAuthenticated()) {
-    alert('Your are not allowed to perform this action');
+    // alert('Your are not allowed to perform this action');
+    Notify.failure('Sorry, Your are not allowed to perform this action.');
     return;
   }
   const div = evt.target.closest('div');
@@ -32,7 +34,8 @@ function onWatched(evt) {
 
 function onQueue(evt) {
   if (!isAuthenticated()) {
-    alert('Your are not allowed to perform this action');
+    // alert('Your are not allowed to perform this action');
+    Notify.failure('Sorry, Your are not allowed to perform this action.');
     return;
   }
   const div = evt.target.closest('div');
@@ -60,6 +63,7 @@ function removeFromLocalStorage(key, id) {
   let idx = listOfMovies.findIndex(film => film.id === id);
   listOfMovies.splice(idx, 1);
   localStorage.setItem(key, JSON.stringify(listOfMovies));
+  Notify.failure(`You have removed this movie from your library`);
 }
 
 function getInfo(id, key) {
@@ -85,6 +89,7 @@ function addToLocalStorage(key, movieObject) {
   if (index === -1) {
     listOfMovies.push(movieObject);
     localStorage.setItem(key, JSON.stringify(listOfMovies));
+    Notify.success(`Congratulation! You have this movie in your library`);
     return listOfMovies;
   }
 }

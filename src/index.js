@@ -1,5 +1,5 @@
 import { refs } from './js/refs';
-// import './js/AuthenticationService';
+import './js/AuthenticationService';
 import './js/trendsMovies';
 import './js/searchMovies';
 import './js/movieHelpers';
