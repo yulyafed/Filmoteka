@@ -25,5 +25,5 @@ export function getToBtns(evt) {
         })
         }
         
-    }, 200);
+    }, 1200);
 }

@@ -19,22 +19,18 @@ function toggleClassHidden(event) {
 }
 function openBackDrop(event) {
   event.preventDefault();
-  Loading.dots({
-    svgColor: '#ff6b02',
-
-    });
-
-
+  
     if (event.target.parentNode.nodeName !== "A") {
       return
     }
-
-
+    Loading.dots({
+  svgColor: '#ff6b02',
+});
   const currentLink = event.target.closest('a');
   const currentId = currentLink.getAttribute('data-id');
   fetchMovieById(currentId).then(res => {
     const result = res.data;
-    Loading.remove(1000);
+    Loading.remove(500);
     refs.modalInfoBox.insertAdjacentHTML(
       'beforeend',
       createBackDropMarkUp(result)
