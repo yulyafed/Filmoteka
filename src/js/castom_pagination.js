@@ -1,5 +1,6 @@
 import { fetchTrendMovies, fetchGenresOfMovie, fetchSearchAnyMovie } from './ApiService';
 const cardsMain = document.querySelector('.main-render');
+import imgPlaceholder from '../images/imgPlaceholder.jpg'
 
 
 const paginationBox = document.querySelector('.pagination')

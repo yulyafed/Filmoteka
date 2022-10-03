@@ -4,6 +4,7 @@ import { renderGalleryCardsMovies, fillMovieGenres, fillMovieYear} from './movie
 import pagination from'./castom_pagination';
 
 
+
 refs.searchForm.addEventListener('submit', onGalleryMoviesFormSubmit);
 
 async function onGalleryMoviesFormSubmit(e) {
