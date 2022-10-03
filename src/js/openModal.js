@@ -1,11 +1,11 @@
 import { refs } from './refs';
 import './ApiService';
 import { fetchMovieById } from './ApiService';
-import { init } from './set-to-watched';  
+import { init } from './set-to-watched';
 
 const posterUrl = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2';
 
-refs.mainRenderList.addEventListener('click', toggleClassHidden);
+refs.mainRenderList.addEventListener('click', addClassHidden);
 refs.modalCloseBtn.addEventListener('click', toggleClassHidden);
 refs.mainRenderList.addEventListener('click', openBackDrop);
 refs.modalCloseBtn.addEventListener('click', cleanBackDrop);
@@ -20,12 +20,12 @@ function openBackDrop(event) {
   event.preventDefault();
 
 
-  
-//   if (event.target.parentNode.nodeName !== "A") {
-// //     return
-// //   }
-  
-  
+
+    if (event.target.parentNode.nodeName !== "A") {
+      return
+    }
+
+
   const currentLink = event.target.closest('a');
   const currentId = currentLink.getAttribute('data-id');
   fetchMovieById(currentId).then(res => {
@@ -45,21 +45,18 @@ function createBackDropMarkUp(result) {
 
   const genreList = genresArray.join(', ');
   const markUp = `<div class="modal__info">
-    <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2${
-      result.poster_path
+    <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2${result.poster_path
     }" alt="poster" class="modal__poster-img">
     <div class="modal__text-box" id=${result.id}>
 
-        <h1 class="modal__top-text">${
-          result.original_title || result.original_name
-        }</h1>
+        <h1 class="modal__top-text">${result.original_title || result.original_name
+    }</h1>
 
         <table class="modal__table">
             <tr class="modal__table-item">
                 <th class="modal__table-top">Vote / Votes</th>
-                <th class="modal__table-text"><span class="vote">${
-                  result.vote_average
-                }</span>   /   ${result.vote_count}</th>
+                <th class="modal__table-text"><span class="vote">${result.vote_average
+    }</span>   /   ${result.vote_count}</th>
             </tr>
             <tr class="modal__table-item">
                 <th class="modal__table-top">Popularity</th>
@@ -103,13 +100,13 @@ function closeModal(event) {
   }
 }
 
-// function addClassHidden(event) {
-//   event.preventDefault()
-//   if (event.target.parentNode.nodeName !== "A") {
-//     return
-//   }
-//   refs.backdrop.classList.toggle('is-hidden');
-// }
+function addClassHidden(event) {
+  event.preventDefault()
+  if (event.target.parentNode.nodeName !== "A") {
+    return
+  }
+  refs.backdrop.classList.toggle('is-hidden');
+}
 
 
 export {
@@ -118,7 +115,8 @@ export {
   cleanBackDrop,
   modalKeyDown,
   closeModal,
+  addClassHidden
 };
 
-  import {getToBtns} from "./component/getToBtns"
+import { getToBtns } from "./component/getToBtns"
 refs.mainRenderList.addEventListener("click", getToBtns)

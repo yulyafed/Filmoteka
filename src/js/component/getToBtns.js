@@ -1,5 +1,8 @@
 export function getToBtns(evt) {
     evt.preventDefault()
+    if (evt.target.parentNode.nodeName !== "A") {
+    return
+    }
 
     setTimeout(() => {
         const watchedModalBtn = document.querySelector("#backdrop > div > div > div > div > ul > li:nth-child(1) > button") 
