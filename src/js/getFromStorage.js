@@ -26,18 +26,14 @@ function createLibraryMarkup(film) {
 
     const markup = `<li class="main-render__item">
         <a href="#" class="main-render__link" data-id="${film.id}">
-        <div class="main-render__image-box">
             <img class="main-render__image"
             src="https://image.tmdb.org/t/p/w500${film.poster_path}"
             alt="${film.original_title || film.name}" 
             data-id="${film.id}">
-            </div>
-            <div class="main-render__discription">
             <h2 class="main-render__title" data-id="${film.id}">
             ${film.original_title || film.name}
             </h2>
             <p class="main-render__text" data-id="${film.id}">${genres} | ${date}</p>
-            </div>
         </a>
         </li>`
     return markup
