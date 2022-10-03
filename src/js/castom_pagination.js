@@ -4,6 +4,8 @@ const cardsMain = document.querySelector('.main-render');
 
 const paginationBox = document.querySelector('.pagination')
 
+
+
 let globalCurrentpage = 0;
 /**
  * Create pagination
@@ -12,12 +14,14 @@ let globalCurrentpage = 0;
  * @return {String} markup - markup for pagination
  */
 export default function pagination(currentPage, allPages) {
+   
   let markup = ''
   let beforeTwoPage = currentPage - 2;
   let beforePage = currentPage - 1;
   let afterPage = currentPage + 1;
   let afterTwoPage = currentPage + 2;
   globalCurrentpage = currentPage;
+  
 
   if (currentPage > 1) {
     markup += `<li class="pagination-left-arrow">&#129144;</li>`
@@ -55,6 +59,7 @@ export default function pagination(currentPage, allPages) {
   }
 
   paginationBox.innerHTML = markup;
+  
 }
 
 paginationBox.addEventListener('click', handlerPagination)
@@ -88,7 +93,7 @@ function handlerPagination(evt) {
     render(data)
   })
   .catch(error => console.log(error));
-  
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function render(data) {
@@ -104,7 +109,7 @@ function render(data) {
         genres: movie.genre_ids,
         year: movie.release_date ? movie.release_date.slice(0, 4) : 'Year N/A',
       };
-
+    
       popularMoviesList.push(movieData);
       cardsMain.innerHTML = popularMoviesList
     .map(({ id, poster, title, genres, year }) => {
@@ -129,4 +134,5 @@ function render(data) {
     })
     .join('');
     });
+    
 }
