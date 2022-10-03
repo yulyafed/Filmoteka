@@ -2,6 +2,7 @@ import { fetchGenresOfMovie, fetchTrendMovies } from './ApiService';
 import { updateTotalPagesNumber, stylePagination, HOME, site } from './pagination';
 import pagination from'./castom_pagination';
 import { preloader } from './preloader';
+import imgPlaceholder from '../images/imgPlaceholder.jpg'
 
 
 const START_PAGE = 1;
