@@ -17,19 +17,19 @@ function addDarkClassToHTML() {
       document.querySelector('.main-render').classList.add('dark');
       document.querySelector('header').classList.add('dark');
       document.querySelector('.main-render').classList.add('dark');
-      document.querySelector('.queued-render').classList.add('dark');
       document.querySelector('.day-nigth-btn-box').classList.add('dark');
       document.querySelector('.pagination').classList.add('dark');
+      document.querySelector('.queued-render').classList.add('dark');
     } else {
       document.querySelector('body').classList.remove('dark');
       document.querySelector('.themetoggle').classList.remove('dark');
       document.querySelector('.material-icons').classList.remove('dark');
       document.querySelector('.main-render').classList.remove('dark');
-      document.querySelector('.queued-render').classList.remove('dark');
       document.querySelector('header').classList.remove('dark');
       document.querySelector('.main-render').classList.remove('dark');
       document.querySelector('.day-nigth-btn-box').classList.remove('dark');
       document.querySelector('.pagination').classList.remove('dark');
+      document.querySelector('.queued-render').classList.remove('dark');
     }
   } catch (err) {}
 }
