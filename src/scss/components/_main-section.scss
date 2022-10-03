@@ -78,6 +78,8 @@
   border-bottom-right-radius: 40px;
   border-top-right-radius: 40px;
   margin-top: 20px;
+  padding-bottom: 10px;
+
   &:hover,
   &:focus {
     box-shadow: 5px 5px 17px 7px (#2d2d2d);
@@ -114,7 +116,6 @@
   border: none;
   border-radius: 5px;
   background: none;
-  padding: 0;
 }
 
 // .main-render__image-box {
@@ -122,12 +123,18 @@
 
 .main-render__image {
   width: 100%;
-  height: 574px;
+  height: 398px;
   object-fit: cover;
   border-radius: 5px;
   border-top-left-radius: 0;
   // background-color: rgb(220, 52, 52);
   transition: all 400ms linear;
+  @media screen and (min-width: 768px) {
+    height: 455px;
+  }
+  @media screen and (min-width: 1280px) {
+    height: 574px;
+  }
 }
 .main-render__discription {
   padding-left: 23px;
@@ -141,6 +148,7 @@
   line-height: 1.33;
   text-transform: uppercase;
   color: rgb(59, 75, 1);
+  padding-left: 23px;
   @media screen and (min-width: 1280px) {
     font-weight: 500;
     font-size: 20px;
@@ -154,6 +162,7 @@
   font-weight: 500;
   line-height: 1.33;
   color: #ff6b08;
+  padding-left: 23px;
   @media screen and (min-width: 1280px) {
     font-size: 20px;
     line-height: 24px;
