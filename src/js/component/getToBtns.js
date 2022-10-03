@@ -9,14 +9,18 @@ export function getToBtns(evt) {
         const queuedList = JSON.parse(localStorage.getItem("queue_list"))
         const currentLink = watchedModalBtn.closest("div")
         const currentId = currentLink.getAttribute("id")
-
-        const watchedInfoItems = watchedList.map(item => {
+        if (watchedList) {
+            const watchedInfoItems = watchedList.map(item => {
             if (item.id === Number(currentId))
                 watchedModalBtn.textContent = "remove from watched"
         })
-        const queuedListItems = queuedList.map(item => {
+        }
+        if (queuedList) {
+            const queuedListItems = queuedList.map(item => {
             if (item.id === Number(currentId))
                 queueModalBtn.textContent = "remove from queue"
         })
+        }
+        
     }, 200);
 }
