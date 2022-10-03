@@ -17,18 +17,7 @@
 
 }
 
-// .loader-hide-modal {
-//     display: flex;
-//     justify-content: center;
-//     position: fixed;
-//     width: 100%;
-//     z-index: 10;
-//     top: 50%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
-// }
-
-.preloader-hide {
+.preloader--hide {
     opacity: 0;
     visibility: hidden;
     z-index: -1;
