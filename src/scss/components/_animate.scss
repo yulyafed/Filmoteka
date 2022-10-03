@@ -63,7 +63,9 @@
   &:focus,
   &:active {
     border-color: #ff6b02;
-    transform: scale(1.2);
+    @media screen and (min-width: 768px) {
+      transform: scale(1.2);
+    }
   }
 }
 .footer-link-text {
@@ -86,4 +88,3 @@
     transform: scale(1.05);
   }
 }
-
