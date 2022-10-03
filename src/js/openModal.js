@@ -18,6 +18,14 @@ function toggleClassHidden(event) {
 }
 function openBackDrop(event) {
   event.preventDefault();
+
+
+  
+//   if (event.target.parentNode.nodeName !== "A") {
+// //     return
+// //   }
+  
+  
   const currentLink = event.target.closest('a');
   const currentId = currentLink.getAttribute('data-id');
   fetchMovieById(currentId).then(res => {
@@ -94,6 +102,14 @@ function closeModal(event) {
     cleanBackDrop();
   }
 }
+
+// function addClassHidden(event) {
+//   event.preventDefault()
+//   if (event.target.parentNode.nodeName !== "A") {
+//     return
+//   }
+//   refs.backdrop.classList.toggle('is-hidden');
+// }
 
 
 export {
