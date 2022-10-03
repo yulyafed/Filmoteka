@@ -1,11 +1,14 @@
 import { fetchSearchAnyMovie, fetchGenresOfMovie } from './ApiService';
 import { refs } from './refs';
 import { renderGalleryCardsMovies, fillMovieGenres, fillMovieYear} from './movieHelpers'
+import pagination from'./castom_pagination';
+
 
 refs.searchForm.addEventListener('submit', onGalleryMoviesFormSubmit);
 
 async function onGalleryMoviesFormSubmit(e) {
     e.preventDefault();
+    
 
     let query = e.target.elements.searchQuery.value.trim();
     let page = 1;
@@ -31,10 +34,13 @@ async function onGalleryMoviesFormSubmit(e) {
 
     const genres = await fetchGenresOfMovie();
 
-    response.results.forEach(movie => {
+    response.data.results.forEach(movie => {
         fillMovieGenres(movie, genres.data.genres);
         fillMovieYear(movie);
     });
+    pagination(response.data.page, response.data.total_pages)
 
-    refs.mainRenderList.innerHTML = renderGalleryCardsMovies(response.results);
+
+    refs.mainRenderList.innerHTML = renderGalleryCardsMovies(response.data.results);
+    
 }

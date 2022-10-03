@@ -1,4 +1,4 @@
-import { fetchTrendMovies } from './ApiService';
+import { fetchTrendMovies, fetchGenresOfMovie, fetchSearchAnyMovie } from './ApiService';
 const cardsMain = document.querySelector('.main-render');
 
 
@@ -66,39 +66,67 @@ paginationBox.addEventListener('click', handlerPagination)
 
 
 function handlerPagination(evt) {
+    const input = document.querySelector('input[name="searchQuery"]')
+    const searchMovie = input.value;
+
   if (evt.target.nodeName !== 'LI') {
     return
   }
   if (evt.target.textContent === "🡸") {
     globalCurrentpage -= 1;
-    fetchTrendMovies(globalCurrentpage)
-  .then(({data }) => {
-    render(data)
-  })
-  .catch(error => console.log(error));
+    if(searchMovie) {
+        fetchSearchAnyMovie(searchMovie, globalCurrentpage)
+        .then(({data }) => {
+            render(data)
+          })
+          .catch(error => console.log(error));
+    }else {
+        fetchTrendMovies(globalCurrentpage)
+        .then(({data }) => {
+          render(data)
+        })
+        .catch(error => console.log(error));
+    }
+    
   }
   if (evt.target.textContent === "🡺") {
     globalCurrentpage += 1;
-    fetchTrendMovies(globalCurrentpage)
-  .then(({data }) => {
-    render(data)
-  })
-  .catch(error => console.log(error));
+    if(searchMovie) {
+        fetchSearchAnyMovie(searchMovie, globalCurrentpage)
+        .then(({data }) => {
+            render(data)
+          })
+          .catch(error => console.log(error));
+    }else {
+        fetchTrendMovies(globalCurrentpage)
+        .then(({data }) => {
+          render(data)
+        })
+        .catch(error => console.log(error));
+    }
   }
   if (evt.target.textContent === "...") {
     return
   }
-  fetchTrendMovies(evt.target.textContent)
-  .then(({data }) => {
-    render(data)
-  })
-  .catch(error => console.log(error));
+  if(searchMovie) {
+    fetchSearchAnyMovie(searchMovie, evt.target.textContent)
+    .then(({data }) => {
+        render(data)
+      })
+      .catch(error => console.log(error));
+}else {
+    fetchTrendMovies(evt.target.textContent)
+    .then(({data }) => {
+      render(data)
+    })
+    .catch(error => console.log(error));
+}
+ 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function render(data) {
     pagination(data.page, data.total_pages)
-    console.log(data); 
 
     const popularMoviesList = [];
     data.results.forEach(movie => {
@@ -111,24 +139,62 @@ function render(data) {
       };
     
       popularMoviesList.push(movieData);
-      cardsMain.innerHTML = popularMoviesList
-    .map(({ id, poster, title, genres, year }) => {
-      return `
-<li class="main-render__item">
-        <a href="#" class="main-render__link" data-id="${id}">        
-          <img class="main-render__image"
-          src="${poster ? `https://image.tmdb.org/t/p/w500${poster}` : imgPlaceholder}"
-          alt="${title}" 
-          data-id="${id}">          
-          <h2 class="main-render__title" data-id="${id}">
-            ${title}
-          </h2>
-          <p class="main-render__text" data-id="${id}">${genres} | ${year}</p>         
-        </a>
-      </li>
-`;
     })
-    .join('');
-    });
+
+    fetchGenresOfMovie()
+    .then(response => {
+      const {
+        data: { genres },
+      } = response;
+
+      popularMoviesList.forEach(movie => {
+        movie.genres = movie.genres.map(id => {
+          genres.forEach(obj => {
+            if (obj.id === id) {
+              id = obj.name;
+            }
+          });
+          return id;
+          
+        });
+        switch (true) {
+            case movie.genres.length > 0 && movie.genres.length <= 2:
+              movie.genres = movie.genres.join(', ');
+              break;
+  
+            case movie.genres.length > 2:
+              movie.genres[2] = 'Other';
+              movie.genres = movie.genres.slice(0, 3).join(', ');
+              break;
+  
+            default:
+              movie.genres = 'Genre N/A';
+              break;
+          }
+        });
+        return popularMoviesList
+      }).then(popularMoviesList => {cardsMain.innerHTML = popularMoviesList.map(({ id, poster, title, genres, year }) => {
+        return `
+  <li class="main-render__item">
+          <a href="#" class="main-render__link" data-id="${id}">          
+            <img class="main-render__image"
+            src="${poster ? `https://image.tmdb.org/t/p/w500${poster}` : imgPlaceholder}"
+            alt="${title}" 
+            data-id="${id}">
+            <h2 class="main-render__title" data-id="${id}">
+              ${title}
+            </h2>
+            <p class="main-render__text" data-id="${id}">${genres} | ${year}</p>
+            
+          </a>
+        </li>
+  `;
+      }).join('')})
+      .catch(error => {
+        console.log('Failed to get genres : ', error);
+        popularMoviesList.map(movie => (movie.genres = 'Genres N/A'));
+      });
+
+      
     
 }

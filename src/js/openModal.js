@@ -19,7 +19,7 @@ function toggleClassHidden(event) {
 }
 function openBackDrop(event) {
   event.preventDefault();
-
+  
     if (event.target.parentNode.nodeName !== "A") {
       return
     }
