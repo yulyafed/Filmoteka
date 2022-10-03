@@ -17,6 +17,7 @@ function addDarkClassToHTML() {
       document.querySelector('.main-render').classList.add('dark');
       document.querySelector('header').classList.add('dark');
       document.querySelector('.main-render').classList.add('dark');
+      document.querySelector('.queued-render').classList.add('dark');
       document.querySelector('.day-nigth-btn-box').classList.add('dark');
       document.querySelector('.pagination').classList.add('dark');
     } else {
@@ -24,6 +25,7 @@ function addDarkClassToHTML() {
       document.querySelector('.themetoggle').classList.remove('dark');
       document.querySelector('.material-icons').classList.remove('dark');
       document.querySelector('.main-render').classList.remove('dark');
+      document.querySelector('.queued-render').classList.remove('dark');
       document.querySelector('header').classList.remove('dark');
       document.querySelector('.main-render').classList.remove('dark');
       document.querySelector('.day-nigth-btn-box').classList.remove('dark');
