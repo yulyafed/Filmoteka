@@ -5,5 +5,4 @@ import './js/day-night';
 import './js/teamModal';
 import './js/getFromStorage';
 import './js/set-to-watched';
-import './js/set-to-watched';
 import './js/ApiService';
