@@ -18,12 +18,12 @@ async function onGalleryMoviesFormSubmit(e) {
 
     const response = await fetchSearchAnyMovie(query);
     if (response === null) {
-        refs.searchTextBox.innerHTML = `Search result not successful. Enter the correct movie name and `;
+        refs.searchTextBox.innerHTML = `Search result not successful. Enter the correct movie name.`;
         return;
     }
 
     if (response.total_pages === 0) {
-        refs.searchTextBox.innerHTML = `Search result not successful. Enter the correct movie name and `;
+        refs.searchTextBox.innerHTML = `Search result not successful. Enter the correct movie name.`;
         return;
     }
     
