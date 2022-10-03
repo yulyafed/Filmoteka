@@ -32,7 +32,7 @@ function openBackDrop(event) {
   const currentId = currentLink.getAttribute('data-id');
   fetchMovieById(currentId).then(res => {
     const result = res.data;
-    Loading.remove(1000);
+    Loading.remove(500);
     console.log("done")
     refs.modalInfoBox.insertAdjacentHTML(
       'beforeend',
