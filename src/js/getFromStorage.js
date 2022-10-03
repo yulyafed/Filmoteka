@@ -1,12 +1,12 @@
 import axios from "axios"
-import { toggleClassHidden, openBackDrop, cleanBackDrop, modalKeyDown, closeModal } from "./openModal"
+import { toggleClassHidden, openBackDrop, cleanBackDrop, modalKeyDown, closeModal, addClassHidden } from "./openModal"
 import { refs } from "./refs"
 import {getToBtns} from "./component/getToBtns"
 const libraryMainList = document.querySelector("[data-film-modal-open]")
 const watchedBTN = document.querySelector(".watched-btn")
 const queueBTN = document.querySelector(".queue-btn")
 libraryMainList.addEventListener("click", openBackDrop)
-libraryMainList.addEventListener("click", toggleClassHidden)
+libraryMainList.addEventListener("click", addClassHidden)
 window.addEventListener("load", showWatchedList)
 queueBTN.addEventListener("click", openOqueueList)
 watchedBTN.addEventListener("click", openWathedList)
