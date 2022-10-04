@@ -1,42 +1,46 @@
-import axios from "axios"
-import { toggleClassHidden, openBackDrop, cleanBackDrop, modalKeyDown, closeModal, addClassHidden } from "./openModal"
-import { refs } from "./refs"
-import { getToBtns } from "./component/getToBtns"
+import axios from 'axios';
+import {
+  toggleClassHidden,
+  openBackDrop,
+  cleanBackDrop,
+  modalKeyDown,
+  closeModal,
+  addClassHidden,
+} from './openModal';
+import { refs } from './refs';
+import { getToBtns } from './component/getToBtns';
 
-const libraryMainList = document.querySelector("[data-film-modal-open")
-const libraryWatchedList = document.querySelector(".watched-render")
-const libraryQueuedList = document.querySelector(".queued-render")
-const watchedBTN = document.querySelector(".watched-btn")
-const queueBTN = document.querySelector(".queue-btn")
+const libraryMainList = document.querySelector('[data-film-modal-open');
+const libraryWatchedList = document.querySelector('.watched-render');
+const libraryQueuedList = document.querySelector('.queued-render');
+const watchedBTN = document.querySelector('.watched-btn');
+const queueBTN = document.querySelector('.queue-btn');
 
-libraryWatchedList.addEventListener("click", openBackDrop)
-libraryWatchedList.addEventListener("click", addClassHidden)
-libraryWatchedList.addEventListener("click", getToBtns)
+libraryWatchedList.addEventListener('click', openBackDrop);
+libraryWatchedList.addEventListener('click', addClassHidden);
+libraryWatchedList.addEventListener('click', getToBtns);
 
-libraryQueuedList.addEventListener("click", openBackDrop)
-libraryQueuedList.addEventListener("click", addClassHidden)
-libraryQueuedList.addEventListener("click", getToBtns)
+libraryQueuedList.addEventListener('click', openBackDrop);
+libraryQueuedList.addEventListener('click', addClassHidden);
+libraryQueuedList.addEventListener('click', getToBtns);
 
-window.addEventListener("load", showWatchedList)
-queueBTN.addEventListener("click", openQueueList)
-watchedBTN.addEventListener("click", openWathedList)
+window.addEventListener('load', showWatchedList);
+queueBTN.addEventListener('click', openQueueList);
+watchedBTN.addEventListener('click', openWathedList);
 
-libraryQueuedList.style.color = "red"
-
-const watchedList = JSON.parse(localStorage.getItem("watched_list"))
-const queuedList = JSON.parse(localStorage.getItem("queue_list"))
+const watchedList = JSON.parse(localStorage.getItem('watched_list'));
+const queuedList = JSON.parse(localStorage.getItem('queue_list'));
 
 function createLibraryMarkup(film) {
+  const genresList = [];
+  const genreList = film.genres.map(genre => {
+    genresList.push(genre.name);
+  });
+  const genres = genresList.join(', ');
 
-    const genresList = []
-    const genreList = film.genres.map(genre => {
-        genresList.push(genre.name)
-    })
-    const genres = genresList.join(', ')
-    
-    const date = film.release_date.slice(0, 4) || film.first_air_date.slice(0, 4)
+  const date = film.release_date.slice(0, 4) || film.first_air_date.slice(0, 4);
 
-    const markup = `<li class="main-render__item">
+  const markup = `<li class="main-render__item">
         <a href="#" class="main-render__link" data-id="${film.id}">
             <img class="main-render__image"
             src="https://image.tmdb.org/t/p/w500${film.poster_path}"
@@ -51,180 +55,195 @@ function createLibraryMarkup(film) {
             }">${genres} | ${date}</p>
         </a>
         </li>`;
-    return markup
+  return markup;
 }
 function showWatchedList(evt) {
-    evt.preventDefault()
+  evt.preventDefault();
 
-    const watched = localStorage.getItem("watched_list")
-    const watchedFilms = watched ? JSON.parse(watched) : []
+  const watched = localStorage.getItem('watched_list');
+  const watchedFilms = watched ? JSON.parse(watched) : [];
 
-    if (watchedFilms.length === 0) {
-        libraryWatchedList.innerHTML = `<li class="api-error">
+  if (watchedFilms.length === 0) {
+    libraryWatchedList.innerHTML = `<li class="api-error">
             <p class="api-error__desc">The list of watched movies is empty.</p>
-            </li>`
-    }
-    watchedFilms.map(film => {
-            libraryWatchedList.insertAdjacentHTML("beforeend", createLibraryMarkup(film))
-        })
+            </li>`;
+  }
+  watchedFilms.map(film => {
+    libraryWatchedList.insertAdjacentHTML(
+      'beforeend',
+      createLibraryMarkup(film)
+    );
+  });
 }
 function showQueuedList(evt) {
-    evt.preventDefault()
+  evt.preventDefault();
 
-    const queue = localStorage.getItem("queue_list")
-    const queueFilms = queue ? JSON.parse(queue) : []
+  const queue = localStorage.getItem('queue_list');
+  const queueFilms = queue ? JSON.parse(queue) : [];
 
-    if (queueFilms.length === 0) {
-        libraryQueuedList.innerHTML = `<li class="api-error">
+  if (queueFilms.length === 0) {
+    libraryQueuedList.innerHTML = `<li class="api-error">
             <p class="api-error__desc">The list of queued movies is empty.</p>
-            </li>`
-    }
-    else {
-        queueFilms.map(film => {
-            libraryQueuedList.insertAdjacentHTML("beforeend", createLibraryMarkup(film))
-        })
-    }
+            </li>`;
+  } else {
+    queueFilms.map(film => {
+      libraryQueuedList.insertAdjacentHTML(
+        'beforeend',
+        createLibraryMarkup(film)
+      );
+    });
+  }
 }
 function openWathedList(evt) {
-    evt.preventDefault()
-    libraryWatchedList.style.display = "grid"
-    queueBTN.classList.remove("btn--active")
-    watchedBTN.classList.add("btn--active")
-    cleanQueuedList()
-    showWatchedList(evt)
+  evt.preventDefault();
+  libraryWatchedList.style.display = 'grid';
+  queueBTN.classList.remove('btn--active');
+  watchedBTN.classList.add('btn--active');
+  cleanQueuedList();
+  showWatchedList(evt);
 }
 function openQueueList(evt) {
-    evt.preventDefault()
-    libraryQueuedList.style.display = "grid"
-    watchedBTN.classList.remove("btn--active")
-    queueBTN.classList.add("btn--active")
-    window.removeEventListener("load", showWatchedList)
-    cleanWatchedList()
-    showQueuedList(evt)
+  evt.preventDefault();
+  libraryQueuedList.style.display = 'grid';
+  watchedBTN.classList.remove('btn--active');
+  queueBTN.classList.add('btn--active');
+  window.removeEventListener('load', showWatchedList);
+  cleanWatchedList();
+  showQueuedList(evt);
 }
 function cleanWatchedList() {
-    libraryWatchedList.style.display = "none"
-    libraryWatchedList.innerHTML = ""
+  libraryWatchedList.style.display = 'none';
+  libraryWatchedList.innerHTML = '';
 }
 function cleanQueuedList() {
-    
-    libraryQueuedList.style.display = "none"
-    libraryQueuedList.innerHTML = ""
+  libraryQueuedList.style.display = 'none';
+  libraryQueuedList.innerHTML = '';
 }
 
-
-refs.modalCloseBtn.addEventListener("click", restoreTheLibrary)
+refs.modalCloseBtn.addEventListener('click', restoreTheLibrary);
 window.addEventListener('keydown', libraryModalKeyDown);
 refs.backdrop.addEventListener('click', libraryCloseModal);
 
 function restoreTheLibrary(evt) {
-    evt.preventDefault()
+  evt.preventDefault();
 
-    if (queueBTN.classList.contains("btn--active")) {
-        const queue = localStorage.getItem("queue_list")
-        const queueFilms = queue ? JSON.parse(queue) : []
+  if (queueBTN.classList.contains('btn--active')) {
+    const queue = localStorage.getItem('queue_list');
+    const queueFilms = queue ? JSON.parse(queue) : [];
 
-        if (queueFilms.length === 0) {
-            libraryQueuedList.innerHTML = `<li class="api-error">
+    if (queueFilms.length === 0) {
+      libraryQueuedList.innerHTML = `<li class="api-error">
                 <p class="api-error__desc">The list of queued movies is empty.</p>
-                </li>`
-        }
-        else {
-            libraryQueuedList.innerHTML = ""
-            queueFilms.map(film => {
-                libraryQueuedList.insertAdjacentHTML("beforeend", createLibraryMarkup(film))
-            })
-        }
+                </li>`;
+    } else {
+      libraryQueuedList.innerHTML = '';
+      queueFilms.map(film => {
+        libraryQueuedList.insertAdjacentHTML(
+          'beforeend',
+          createLibraryMarkup(film)
+        );
+      });
     }
-    if (watchedBTN.classList.contains("btn--active")) {
-        const watched = localStorage.getItem("watched_list")
-        const watchedFilms = watched ? JSON.parse(watched) : []
+  }
+  if (watchedBTN.classList.contains('btn--active')) {
+    const watched = localStorage.getItem('watched_list');
+    const watchedFilms = watched ? JSON.parse(watched) : [];
 
-        if (watchedFilms.length === 0) {
-            libraryWatchedList.innerHTML = `<li class="api-error">
+    if (watchedFilms.length === 0) {
+      libraryWatchedList.innerHTML = `<li class="api-error">
                 <p class="api-error__desc">The list of watched movies is empty.</p>
-                </li>`
-        }
-        else {
-            libraryWatchedList.innerHTML = ""
-            watchedFilms.map(film => {
-            libraryWatchedList.insertAdjacentHTML("beforeend", createLibraryMarkup(film))
-        }) 
-        }   
+                </li>`;
+    } else {
+      libraryWatchedList.innerHTML = '';
+      watchedFilms.map(film => {
+        libraryWatchedList.insertAdjacentHTML(
+          'beforeend',
+          createLibraryMarkup(film)
+        );
+      });
     }
+  }
 }
 function libraryCloseModal(event) {
   event.preventDefault();
   if (event.target === refs.backdrop) {
-    if (queueBTN.classList.contains("btn--active")) {
-        const queue = localStorage.getItem("queue_list")
-        const queueFilms = queue ? JSON.parse(queue) : []
+    if (queueBTN.classList.contains('btn--active')) {
+      const queue = localStorage.getItem('queue_list');
+      const queueFilms = queue ? JSON.parse(queue) : [];
 
-        if (queueFilms.length === 0) {
-            libraryQueuedList.innerHTML = `<li class="api-error">
+      if (queueFilms.length === 0) {
+        libraryQueuedList.innerHTML = `<li class="api-error">
                 <p class="api-error__desc">The list of queued movies is empty.</p>
-                </li>`
-        }
-        else {
-            libraryQueuedList.innerHTML = ""
-            queueFilms.map(film => {
-                libraryQueuedList.insertAdjacentHTML("beforeend", createLibraryMarkup(film))
-            })
-        }
+                </li>`;
+      } else {
+        libraryQueuedList.innerHTML = '';
+        queueFilms.map(film => {
+          libraryQueuedList.insertAdjacentHTML(
+            'beforeend',
+            createLibraryMarkup(film)
+          );
+        });
+      }
     }
-    if (watchedBTN.classList.contains("btn--active")) {
-        const watched = localStorage.getItem("watched_list")
-        const watchedFilms = watched ? JSON.parse(watched) : []
+    if (watchedBTN.classList.contains('btn--active')) {
+      const watched = localStorage.getItem('watched_list');
+      const watchedFilms = watched ? JSON.parse(watched) : [];
 
-        if (watchedFilms.length === 0) {
-            libraryWatchedList.innerHTML = `<li class="api-error">
+      if (watchedFilms.length === 0) {
+        libraryWatchedList.innerHTML = `<li class="api-error">
                 <p class="api-error__desc">The list of watched movies is empty.</p>
-                </li>`
-        }
-        else {
-            libraryWatchedList.innerHTML = ""
-            watchedFilms.map(film => {
-            libraryWatchedList.insertAdjacentHTML("beforeend", createLibraryMarkup(film))
-        }) 
-        }   
+                </li>`;
+      } else {
+        libraryWatchedList.innerHTML = '';
+        watchedFilms.map(film => {
+          libraryWatchedList.insertAdjacentHTML(
+            'beforeend',
+            createLibraryMarkup(film)
+          );
+        });
+      }
     }
-    }
+  }
 }
 function libraryModalKeyDown(event) {
-    console.log(event.code);
-        if (event.code === 'Escape') {
-            console.log("done");
-            if (queueBTN.classList.contains("btn--active")) {
-        const queue = localStorage.getItem("queue_list")
-        const queueFilms = queue ? JSON.parse(queue) : []
+  console.log(event.code);
+  if (event.code === 'Escape') {
+    console.log('done');
+    if (queueBTN.classList.contains('btn--active')) {
+      const queue = localStorage.getItem('queue_list');
+      const queueFilms = queue ? JSON.parse(queue) : [];
 
-        if (queueFilms.length === 0) {
-            libraryQueuedList.innerHTML = `<li class="api-error">
+      if (queueFilms.length === 0) {
+        libraryQueuedList.innerHTML = `<li class="api-error">
                 <p class="api-error__desc">The list of queued movies is empty.</p>
-                </li>`
-        }
-        else {
-            libraryQueuedList.innerHTML = ""
-            queueFilms.map(film => {
-                libraryQueuedList.insertAdjacentHTML("beforeend", createLibraryMarkup(film))
-            })
-        }
-            }
-            if (watchedBTN.classList.contains("btn--active")) {
-                const watched = localStorage.getItem("watched_list")
-                const watchedFilms = watched ? JSON.parse(watched) : []
+                </li>`;
+      } else {
+        libraryQueuedList.innerHTML = '';
+        queueFilms.map(film => {
+          libraryQueuedList.insertAdjacentHTML(
+            'beforeend',
+            createLibraryMarkup(film)
+          );
+        });
+      }
+    }
+    if (watchedBTN.classList.contains('btn--active')) {
+      const watched = localStorage.getItem('watched_list');
+      const watchedFilms = watched ? JSON.parse(watched) : [];
 
-                if (watchedFilms.length === 0) {
-                    libraryWatchedList.innerHTML = `<li class="api-error">
+      if (watchedFilms.length === 0) {
+        libraryWatchedList.innerHTML = `<li class="api-error">
                         <p class="api-error__desc">The list of watched movies is empty.</p>
-                        </li>`
-                }
-                else {
-                    libraryWatchedList.innerHTML = ""
-                    watchedFilms.map(film => {
-                    libraryWatchedList.insertAdjacentHTML("beforeend", createLibraryMarkup(film))
-                }) 
-                }   
-            }
-        }
+                        </li>`;
+      } else {
+        libraryWatchedList.innerHTML = '';
+        watchedFilms.map(film => {
+          libraryWatchedList.insertAdjacentHTML(
+            'beforeend',
+            createLibraryMarkup(film)
+          );
+        });
+      }
+    }
+  }
 }
