@@ -54,6 +54,10 @@ body.dark {
   top: 0;
   left: 0;
   transform: translateX(-50%);
+  transition: box-shadow 300ms linear;
+  &:hover {
+    box-shadow: 0px 0px 5px 5px (#ff6b027b);
+  }
 }
 header {
   position: relative;
@@ -80,6 +84,12 @@ header {
   transition: box-shadow 300ms linear;
   box-shadow: 0px 0px 100px 10px (rgb(17, 17, 17));
   &.dark {
+    & .header-list__link--active::after {
+      box-shadow: 0px 3px 10px #ff6b02;
+    }
+    & .header-link__hover::after {
+      box-shadow: 0px 3px 10px #ff6b02;
+    }
     box-shadow: 0px 0px 100px 5px (rgb(255, 0, 0));
   }
 }
@@ -107,7 +117,50 @@ header {
   color: #fff;
   fill: #fff;
   background-color: rgb(67, 66, 66);
+  transition: box-shadow 300ms linear, background-color 300ms linear;
+  &:hover,
+  &:focus {
+    box-shadow: 0px 0px 4px 4px #ff6b0275;
+  }
   &.active {
     background-color: #ff6b02;
+    box-shadow: 0px 0px 4px 4px #ff6b0275;
   }
+}
+.modal.dark {
+  background-color: rgb(46, 46, 46);
+  overflow: auto;
+  padding: 10px 10px;
+  border-radius: 20px;
+  border: 2px solid #ff6b02;
+  box-shadow: 0px 0px 6px 6px (#ff6b027a);
+  & img {
+    border-radius: 20px;
+    border: 1px solid #ff6b02;
+  }
+  & h1,
+  & th,
+  & p {
+    color: #fff;
+  }
+  & button {
+    border-color: #fff;
+    color: #fff;
+    transition: background-color 300ms linear, border 300ms linear;
+  }
+  & svg {
+    fill: #fff;
+    transition: fill 300ms linear;
+    &:hover,
+    &:focus {
+      fill: #ff6b02;
+    }
+  }
+}
+.backdrop.is-hidden .modal {
+  transform: translateX(200%);
+}
+.modal {
+  transform: translateX(0);
+  transition: transform 1s linear;
 }

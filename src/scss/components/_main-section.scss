@@ -79,7 +79,9 @@
   border-top-right-radius: 40px;
   margin-top: 20px;
   padding-bottom: 10px;
-
+  & li {
+    transition: color 500ms linear;
+  }
   &:hover,
   &:focus {
     box-shadow: 5px 5px 17px 7px (#2d2d2d);
@@ -101,9 +103,12 @@
   }
 }
 .main-render.dark .main-render__item {
-  border: rgb(255, 255, 255) 2px solid;
+  border: #ff6b08 2px solid;
   box-shadow: 5px 5px 10px 5px (#7e7d7d);
-
+  background-color: #2d2d2d;
+  & h2 {
+    color: white;
+  }
   &:hover {
     box-shadow: 5px 5px 17px 13px (#fdfdfd92);
   }

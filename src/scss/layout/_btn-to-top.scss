@@ -1,5 +1,5 @@
 .btn-to-top {
-//   display: none;
+  //   display: none;
   position: fixed;
   right: 0;
   bottom: 20px;
@@ -12,16 +12,13 @@
   background-size: contain;
   background-repeat: no-repeat;
   transform: translateY(120%);
-    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 1280px) {
     right: 15px;
     width: 100px;
     height: 160px;
   }
-    
 }
 
 .btn-to-top-show {
