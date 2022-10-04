@@ -3,7 +3,7 @@ import { refs } from './refs';
 import { renderGalleryCardsMovies, fillMovieGenres, fillMovieYear} from './movieHelpers'
 import pagination from'./castom_pagination';
 
-
+const paginationEl = document.getElementById('tui-pagination-container')
 
 refs.searchForm.addEventListener('submit', onGalleryMoviesFormSubmit);
 
@@ -23,15 +23,18 @@ async function onGalleryMoviesFormSubmit(e) {
     const response = await fetchSearchAnyMovie(query);
     if (response.data === null) {
         refs.searchTextBox.innerHTML = `Search result not successful. Enter the correct movie name.`;
+        paginationEl.style.display = 'none';
         return;
     }
 
     if (response.data.total_pages === 0) {
         refs.searchTextBox.innerHTML = `Search result not successful. Enter the correct movie name.`;
+        paginationEl.style.display = 'none';
         return;
     }
     
     refs.searchTextBox.innerHTML = '';
+    paginationEl.style.display = 'block';
 
     const genres = await fetchGenresOfMovie();
 
