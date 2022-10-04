@@ -1,19 +1,31 @@
 import imgPlaceholder from '../images/imgPlaceholder.jpg'
 
 export function renderGalleryCardsMovies(arr) {
-    const markup = arr.reduce((acc, obj) => acc + `
+    const markup = arr.reduce(
+      (acc, obj) =>
+        acc +
+        `
     <li class="main-render__item">
         <a href="#" class="main-render__link" data-id="${obj.id}">
             <img class="main-render__image"
-          src="${obj.poster_path ? `https://image.tmdb.org/t/p/w500${obj.poster_path}` : imgPlaceholder}"
+          src="${
+            obj.poster_path
+              ? `https://image.tmdb.org/t/p/w500${obj.poster_path}`
+              : imgPlaceholder
+          }"
+          loading="lazy"
           alt="${obj.original_title}" 
           data-id="${obj.id}">
               <h2 class="main-render__title" data-id="${obj.id}">
             ${obj.original_title}
           </h2>
-          <p class="main-render__text" data-id="${obj.id}">${obj.genres} | ${obj.year}</p>
+          <p class="main-render__text" data-id="${obj.id}">${obj.genres} | ${
+          obj.year
+        }</p>
         </a>
-      </li>`, '');
+      </li>`,
+      ''
+    );
     return markup;
 }
 

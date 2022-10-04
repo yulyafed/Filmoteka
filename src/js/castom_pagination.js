@@ -179,7 +179,12 @@ function render(data) {
   <li class="main-render__item">
           <a href="#" class="main-render__link" data-id="${id}">          
             <img class="main-render__image"
-            src="${poster ? `https://image.tmdb.org/t/p/w500${poster}` : imgPlaceholder}"
+            src="${
+              poster
+                ? `https://image.tmdb.org/t/p/w500${poster}`
+                : imgPlaceholder
+            }"
+            loading="lazy"
             alt="${title}" 
             data-id="${id}">
             <h2 class="main-render__title" data-id="${id}">
