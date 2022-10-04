@@ -188,3 +188,6 @@ header {
   transform: translateX(0);
   transition: transform 1s linear;
 }
+.queued-render.dark {
+  color: #fff;
+}
