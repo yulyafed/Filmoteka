@@ -77,6 +77,8 @@
     }
 }
 .header__btn--library {
+    height: 44px;
+    width: 129.53px;
     padding: 14px 36px 12px 36px;
     background-color: transparent;
     border: 1px solid #FFFFFF;
@@ -87,9 +89,12 @@
     line-height: 1.33;
     color: #FFFFFF;
     @media screen and (min-width: 768px) {
+        width: 152px;
         padding: 13px 46px;
     }
     @media screen and (min-width: 1280px) {
+        height: 42px;
+        width: 147px;
         padding: 12px 41px;
 }
 }
