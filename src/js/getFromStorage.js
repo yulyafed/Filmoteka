@@ -21,6 +21,7 @@ window.addEventListener("load", showWatchedList)
 queueBTN.addEventListener("click", openQueueList)
 watchedBTN.addEventListener("click", openWathedList)
 
+libraryQueuedList.style.color = "red"
 
 const watchedList = JSON.parse(localStorage.getItem("watched_list"))
 const queuedList = JSON.parse(localStorage.getItem("queue_list"))
@@ -103,6 +104,7 @@ function cleanWatchedList() {
     libraryWatchedList.innerHTML = ""
 }
 function cleanQueuedList() {
+    
     libraryQueuedList.style.display = "none"
     libraryQueuedList.innerHTML = ""
 }
@@ -222,4 +224,4 @@ function libraryModalKeyDown(event) {
                 }   
             }
         }
-    }
+}
