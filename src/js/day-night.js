@@ -17,6 +17,7 @@ function addDarkClassToHTML() {
       document.querySelector('.main-render').classList.add('dark');
       document.querySelector('header').classList.add('dark');
       document.querySelector('.main-render').classList.add('dark');
+      document.querySelector('.modal-dark').classList.add('dark');
       document.querySelector('.day-nigth-btn-box').classList.add('dark');
       document.querySelector('.pagination').classList.add('dark');
       document.querySelector('.modal').classList.add('dark');
@@ -28,6 +29,7 @@ function addDarkClassToHTML() {
       document.querySelector('.main-render').classList.remove('dark');
       document.querySelector('header').classList.remove('dark');
       document.querySelector('.main-render').classList.remove('dark');
+      document.querySelector('.modal-dark').classList.remove('dark');
       document.querySelector('.day-nigth-btn-box').classList.remove('dark');
       document.querySelector('.pagination').classList.remove('dark');
       document.querySelector('.modal').classList.remove('dark');
